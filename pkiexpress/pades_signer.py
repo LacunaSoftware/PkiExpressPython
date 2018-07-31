@@ -132,6 +132,7 @@ class PadesSigner(Signer):
         """
 
         Property for the overwrite original file permission.
+        :return the permission to overwrite original file.
 
         """
         return self.__overwrite_original_file

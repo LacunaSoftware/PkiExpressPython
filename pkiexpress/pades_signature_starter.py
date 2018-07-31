@@ -15,7 +15,7 @@ from .signature_starter import SignatureStarter
 class PadesSignatureStarter(SignatureStarter):
     """
 
-    Class performs the initialization of a PAdES signature.
+    Class that performs the initialization of a PAdES signature.
 
     """
 
