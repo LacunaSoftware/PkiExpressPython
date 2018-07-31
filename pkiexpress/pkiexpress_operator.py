@@ -16,17 +16,6 @@ from .version_manager import VersionManager
 class PkiExpressOperator(object):
     __metaclass__ = ABCMeta
 
-    __temp_files = []
-    __file_references = {}
-
-    _config = None
-    _version_manager = None
-    _trusted_roots = []
-    _offline = False
-    _trust_lacuna_test_root = False
-    _signature_policy = None
-    _timestamp_authority = None
-
     COMMAND_SIGN_CADES = 'sign-cades'
     COMMAND_SIGN_PADES = 'sign-pades'
     COMMAND_SIGN_XML = 'sign-xml'
@@ -41,10 +30,18 @@ class PkiExpressOperator(object):
     COMMAND_COMPLETE_AUTH = 'complete-auth'
 
     def __init__(self, config=None):
+        self.__temp_files = []
+        self.__file_references = {}
+
         if config is None:
             config = PkiExpressConfig()
         self._config = config
         self._version_manager = VersionManager()
+        self._trusted_roots = []
+        self._offline = False
+        self._trust_lacuna_test_root = False
+        self._signature_policy = None
+        self._timestamp_authority = None
 
     def __del__(self):
         for temp_file in self.__temp_files:

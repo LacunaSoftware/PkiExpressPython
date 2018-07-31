@@ -1,10 +1,4 @@
 class TimestampAuthority(object):
-    __url = None
-    __token = None
-    __ssl_thumbprint = None
-    __basic_auth = None
-    __auth_type = None
-
     NONE = 0
     BASIC_AUTH = 1
     SSL = 2
@@ -12,6 +6,9 @@ class TimestampAuthority(object):
 
     def __init__(self, url):
         self.__url = url
+        self.__token = None
+        self.__ssl_thumbprint = None
+        self.__basic_auth = None
         self.__auth_type = TimestampAuthority.NONE
 
     def set_oauth_token_authentication(self, token):

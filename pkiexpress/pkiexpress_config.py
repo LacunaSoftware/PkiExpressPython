@@ -6,9 +6,6 @@ class PkiExpressConfig(object):
     """
     Contains configuration about the use of PKI Express on this library.
     """
-    __pki_express_home = None
-    __temp_folder = None
-    __transfer_data_folder = None
 
     def __init__(self, pki_express_home=None, temp_folder=None,
                  transfer_data_folder=None):

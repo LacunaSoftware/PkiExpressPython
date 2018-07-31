@@ -12,12 +12,11 @@ from .pkiexpress_config import PkiExpressConfig
 class SignatureStarter(BaseSigner):
     __metaclass__ = ABCMeta
 
-    _certificate_path = None
-
     def __init__(self, config):
         if not config:
             config = PkiExpressConfig()
         super(SignatureStarter, self).__init__(config)
+        self._certificate_path = None
 
     # region set_certificate
 

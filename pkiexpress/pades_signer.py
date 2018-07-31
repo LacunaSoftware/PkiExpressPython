@@ -8,14 +8,14 @@ from .pkiexpress_config import PkiExpressConfig
 
 
 class PadesSigner(Signer):
-    __pdf_to_sign_path = None
-    __vr_json_path = None
-    __overwrite_original_file = False
 
     def __init__(self, config=None):
         if not config:
             config = PkiExpressConfig()
         super(PadesSigner, self).__init__(config)
+        self.__pdf_to_sign_path = None
+        self.__vr_json_path = None
+        self.__overwrite_original_file = False
 
     # region set_pdf_to_sign
 

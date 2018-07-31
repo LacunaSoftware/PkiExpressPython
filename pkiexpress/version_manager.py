@@ -2,10 +2,9 @@ from distutils.version import StrictVersion
 
 
 class VersionManager(object):
-    __min_version = StrictVersion('0.0')
 
     def __init__(self):
-        pass
+        self.__min_version = StrictVersion('0.0')
 
     def require_version(self, min_version_candidate):
         candidate = StrictVersion(min_version_candidate)

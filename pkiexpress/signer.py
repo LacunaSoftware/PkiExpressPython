@@ -11,15 +11,14 @@ from .pkiexpress_config import PkiExpressConfig
 class Signer(BaseSigner):
     __metaclass__ = ABCMeta
 
-    _output_file_path = None
-    _pkcs12_path = None
-    _cert_thumb = None
-    _cert_password = None
-
     def __init__(self, config=None):
         if not config:
             config = PkiExpressConfig()
         super(Signer, self).__init__(config)
+        self._output_file_path = None
+        self._pkcs12_path = None
+        self._cert_thumb = None
+        self._cert_password = None
 
     # region set_pkcs12
 
