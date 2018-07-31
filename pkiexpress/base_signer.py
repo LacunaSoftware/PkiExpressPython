@@ -3,9 +3,9 @@
 Module containing the BaseSigner class.
 
 """
+from pkiexpress import standard_signature_policies
 from .pkiexpress_config import PkiExpressConfig
 from .pkiexpress_operator import PkiExpressOperator
-from .standard_signature_policies import StandardSignaturePolicies
 
 
 class BaseSigner(PkiExpressOperator):
@@ -23,8 +23,8 @@ class BaseSigner(PkiExpressOperator):
 
     def _verify_and_add_common_options(self, args):
 
-        if StandardSignaturePolicies.require_timestamp(self._signature_policy) \
-                and not self._timestamp_authority:
+        if standard_signature_policies.require_timestamp(
+                self._signature_policy) and not self._timestamp_authority:
             raise Exception('The provided policy requires a timestamp '
                             'authority and none was provided')
 
@@ -36,17 +36,17 @@ class BaseSigner(PkiExpressOperator):
             # This operation evolved after version 1.5 to other signature
             # policies.
             if self._signature_policy is not \
-                    StandardSignaturePolicies.XML_DSIG_BASIC and \
+                    standard_signature_policies.XML_DSIG_BASIC and \
                     self._signature_policy is not \
-                    StandardSignaturePolicies.NFE_PADRAO_NACIONAL:
+                    standard_signature_policies.NFE_PADRAO_NACIONAL:
                 # This operation can only be used on versions greater than 1.5
                 # of the PKI Express.
                 self._version_manager.require_version('1.5')
 
             if self._signature_policy is not \
-                    StandardSignaturePolicies.COD_WITH_SHA1 and \
+                    standard_signature_policies.COD_WITH_SHA1 and \
                     self._signature_policy is not \
-                    StandardSignaturePolicies.COD_WITH_SHA256:
+                    standard_signature_policies.COD_WITH_SHA256:
                 # These policies can only be used on version greater than 1.6
                 # of the PKI Express.
                 self._version_manager.require_version('1.6')

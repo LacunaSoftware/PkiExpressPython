@@ -25,7 +25,6 @@ from pkiexpress.pkiexpress_operator import PkiExpressOperator
 from pkiexpress.signature_finisher import SignatureFinisher
 from pkiexpress.signature_starter import SignatureStarter
 from pkiexpress.signer import Signer
-from pkiexpress.standard_signature_policies import StandardSignaturePolicies
 from pkiexpress.timestamp_authority import TimestampAuthority
 from pkiexpress.version import __version__
 from pkiexpress.version_manager import VersionManager

@@ -1,3 +1,8 @@
+"""
+
+Module containing the pades signer class.
+
+"""
 import base64
 import binascii
 import json
@@ -8,6 +13,11 @@ from .pkiexpress_config import PkiExpressConfig
 
 
 class PadesSigner(Signer):
+    """
+
+    Class performs a local PAdES signature.
+
+    """
 
     def __init__(self, config=None):
         if not config:
@@ -20,17 +30,36 @@ class PadesSigner(Signer):
     # region set_pdf_to_sign
 
     def set_pdf_to_sign_from_path(self, path):
+        """
+
+        Sets the PDF to be signed from its path.
+        :param path: The path of the PDF to be signed.
+
+        """
         if not os.path.exists(path):
             raise Exception('The provided PDF to be signed was not found')
         self.__pdf_to_sign_path = path
 
     def set_pdf_to_sign_from_raw(self, content_raw):
+        """
+
+        Sets the PDF to be signed from its content.
+        :param content_raw: The content of the PDF to be signed.
+
+        """
         temp_file_path = self.create_temp_file()
         with open(temp_file_path, 'wb') as file_desc:
             file_desc.write(content_raw)
         self.__pdf_to_sign_path = temp_file_path
 
     def set_pdf_to_sign_from_base64(self, content_base64):
+        """
+
+        Sets the PDF to be signed from its Base64-encoded content.
+        :param content_base64: The Base64-encoded content of the the PDF to be
+                               signed.
+
+        """
         try:
             raw = base64.standard_b64decode(str(content_base64))
         except (TypeError, binascii.Error):
@@ -43,12 +72,25 @@ class PadesSigner(Signer):
     # region set_visual_representation
 
     def set_visual_representation_file(self, path):
+        """
+
+        Sets the visual representation for the signature from a JSON file.
+        :param path: Path of the JSON file that represents the visual
+                     representation.
+
+        """
         if not os.path.exists(path):
             raise Exception('The provided visual representation file was not '
                             'found')
         self.__vr_json_path = path
 
     def set_visual_representation(self, representation):
+        """
+
+        Sets the visual representation for the signature from a model.
+        :param representation: The model of the visual representation.
+
+        """
         try:
             json_str = json.dumps(representation)
         except TypeError:
@@ -87,6 +129,11 @@ class PadesSigner(Signer):
 
     @property
     def overwrite_original_file(self):
+        """
+
+        Property for the overwrite original file permission.
+
+        """
         return self.__overwrite_original_file
 
     @overwrite_original_file.setter
