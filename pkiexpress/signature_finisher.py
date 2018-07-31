@@ -7,16 +7,16 @@ from .pkiexpress_operator import PkiExpressOperator
 
 
 class SignatureFinisher(PkiExpressOperator):
-    __file_to_sign_path = None
-    __transfer_file_path = None
-    __data_file_path = None
-    __output_file_path = None
-    __signature = None
 
     def __init__(self, config=None):
         if not config:
             config = PkiExpressConfig()
         super(SignatureFinisher, self).__init__(config)
+        self.__file_to_sign_path = None
+        self.__transfer_file_path = None
+        self.__data_file_path = None
+        self.__output_file_path = None
+        self.__signature = None
 
     # region set_file_to_sign
 

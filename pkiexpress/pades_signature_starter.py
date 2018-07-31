@@ -15,16 +15,16 @@ from .signature_starter import SignatureStarter
 class PadesSignatureStarter(SignatureStarter):
     """
 
-    Class perform the initialization of a PAdES signature.
+    Class that performs the initialization of a PAdES signature.
 
     """
-    __pdf_to_sign_path = None
-    __vr_json_path = None
 
     def __init__(self, config=None):
         if not config:
             config = PkiExpressConfig()
         super(PadesSignatureStarter, self).__init__(config)
+        self.__pdf_to_sign_path = None
+        self.__vr_json_path = None
 
     # region set_pdf_to_sign
 
