@@ -102,6 +102,13 @@ class PadesSignatureStarter(SignatureStarter):
     # endregion
 
     def start(self):
+        """
+
+        Starts a PAdES signature.
+        :return: The result of the signature init. These values are used by
+                 SignatureFinisher.
+
+        """
         if not self.__pdf_to_sign_path:
             raise Exception('The PDF to be signed was not set')
 

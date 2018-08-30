@@ -1,6 +1,6 @@
 """
 
-Module containing the pades signer class.
+Module containing the PAdES signer class.
 
 """
 import base64
@@ -56,14 +56,14 @@ class PadesSigner(Signer):
         """
 
         Sets the PDF to be signed from its Base64-encoded content.
-        :param content_base64: The Base64-encoded content of the the PDF to be
+        :param content_base64: The Base64-encoded content of the PDF to be
                                signed.
 
         """
         try:
             raw = base64.standard_b64decode(str(content_base64))
         except (TypeError, binascii.Error):
-            raise Exception('The provided PDF to be signed iw not '
+            raise Exception('The provided PDF to be signed is not '
                             'Base64-encoded')
         self.set_pdf_to_sign_from_raw(raw)
 
@@ -103,6 +103,11 @@ class PadesSigner(Signer):
     # endregion
 
     def sign(self):
+        """
+
+        Performs a PAdES signature.
+
+        """
         if not self.__pdf_to_sign_path:
             raise Exception('The PDF to be signed was not set')
 
@@ -124,7 +129,7 @@ class PadesSigner(Signer):
             args.append('--visual-rep')
             args.append(self.__vr_json_path)
 
-        # Invoke command with plain text output (to support PKI Express < 1.3
+        # Invoke command with plain text output (to support PKI Express < 1.3)
         self._invoke_plain(self.COMMAND_SIGN_PADES, args)
 
     @property

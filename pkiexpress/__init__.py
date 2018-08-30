@@ -5,6 +5,8 @@ Import all elements of the library to facilitate its importation from user.
 """
 
 import pkiexpress.base_signer
+import pkiexpress.cades_signature_starter
+import pkiexpress.cades_signer
 import pkiexpress.pades_signature_starter
 import pkiexpress.pades_signer
 import pkiexpress.pkiexpress_config
@@ -18,6 +20,8 @@ import pkiexpress.version
 import pkiexpress.version_manager
 
 from pkiexpress.base_signer import BaseSigner
+from pkiexpress.cades_signature_starter import CadesSignatureStarter
+from pkiexpress.cades_signer import CadesSigner
 from pkiexpress.pades_signature_starter import PadesSignatureStarter
 from pkiexpress.pades_signer import PadesSigner
 from pkiexpress.pkiexpress_config import PkiExpressConfig
@@ -31,6 +35,8 @@ from pkiexpress.version_manager import VersionManager
 
 __all__ = []
 __all__ += pkiexpress.base_signer.__all__
+__all__ += pkiexpress.cades_signature_starter.__all__
+__all__ += pkiexpress.cades_signer.__all__
 __all__ += pkiexpress.pades_signature_starter.__all__
 __all__ += pkiexpress.pades_signer.__all__
 __all__ += pkiexpress.pkiexpress_config.__all__
