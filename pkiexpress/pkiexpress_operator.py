@@ -54,6 +54,9 @@ class PkiExpressOperator(object):
         return self._invoke(command, args, True)
 
     def _invoke(self, command, args=None, plain_output=False):
+        if args is None:
+            args = []
+
         # Add PKI Express invocation arguments
         cmd_args = []
         for invocation_arg in self._get_pki_express_invocation():
@@ -123,10 +126,10 @@ class PkiExpressOperator(object):
         if home:
 
             if system == 'linux':
-                if not os.path.exists(os.path.join(system, 'pkie.dll')):
+                if not os.path.exists(os.path.join(home, 'pkie.dll')):
                     raise Exception("The file pkie.dll could not be found on"
                                     "directory %s" % home)
-            elif not os.path.exists(os.path.join(system, 'pkie.exe')):
+            elif not os.path.exists(os.path.join(home, 'pkie.exe')):
                 raise Exception("The file pki.exe could not be found on "
                                 "directory %s" % home)
 

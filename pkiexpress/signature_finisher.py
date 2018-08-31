@@ -108,7 +108,7 @@ class SignatureFinisher(PkiExpressOperator):
 
     def complete(self):
         if not self.__file_to_sign_path:
-            raise Exception('The file to be signe was not set')
+            raise Exception('The file to be signed was not set')
 
         if not self.__transfer_file_path:
             raise Exception('The transfer file was not set')

@@ -43,9 +43,9 @@ class BaseSigner(PkiExpressOperator):
                 # of the PKI Express.
                 self._version_manager.require_version('1.5')
 
-            if self._signature_policy is not \
+            if self._signature_policy is \
                     standard_signature_policies.COD_WITH_SHA1 and \
-                    self._signature_policy is not \
+                    self._signature_policy is \
                     standard_signature_policies.COD_WITH_SHA256:
                 # These policies can only be used on version greater than 1.6
                 # of the PKI Express.
