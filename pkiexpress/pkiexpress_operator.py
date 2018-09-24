@@ -29,6 +29,7 @@ class PkiExpressOperator(object):
     COMMAND_START_AUTH = 'start-auth'
     COMMAND_COMPLETE_AUTH = 'complete-auth'
     COMMAND_STAMP_PDF = 'stamp-pdf'
+    COMMAND_READ_CERT = 'read-cert'
 
     def __init__(self, config=None):
         self.__temp_files = []
