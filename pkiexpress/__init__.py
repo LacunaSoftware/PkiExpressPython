@@ -9,6 +9,7 @@ import pkiexpress.cades_signature_starter
 import pkiexpress.cades_signer
 import pkiexpress.pades_signature_starter
 import pkiexpress.pades_signer
+import pkiexpress.pades_timestamper
 import pkiexpress.pkiexpress_config
 import pkiexpress.pkiexpress_operator
 import pkiexpress.signature_finisher
@@ -24,6 +25,7 @@ from pkiexpress.cades_signature_starter import CadesSignatureStarter
 from pkiexpress.cades_signer import CadesSigner
 from pkiexpress.pades_signature_starter import PadesSignatureStarter
 from pkiexpress.pades_signer import PadesSigner
+from pkiexpress.pades_timestamper import PadesTimestamper
 from pkiexpress.pkiexpress_config import PkiExpressConfig
 from pkiexpress.pkiexpress_operator import PkiExpressOperator
 from pkiexpress.signature_finisher import SignatureFinisher
@@ -39,6 +41,7 @@ __all__ += pkiexpress.cades_signature_starter.__all__
 __all__ += pkiexpress.cades_signer.__all__
 __all__ += pkiexpress.pades_signature_starter.__all__
 __all__ += pkiexpress.pades_signer.__all__
+__all__ += pkiexpress.pades_timestamper.__all__
 __all__ += pkiexpress.pkiexpress_config.__all__
 __all__ += pkiexpress.pkiexpress_operator.__all__
 __all__ += pkiexpress.signature_finisher.__all__
