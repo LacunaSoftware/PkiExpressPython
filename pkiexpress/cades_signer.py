@@ -5,8 +5,10 @@ Module containing the CAdES signer class.
 """
 import base64
 import binascii
+import json
 import os
 
+from .pk_certificate import PKCertificate
 from .signer import Signer
 from .pkiexpress_config import PkiExpressConfig
 
@@ -109,7 +111,7 @@ class CadesSigner(Signer):
 
     # endregion
 
-    def sign(self):
+    def sign(self, get_cert=False):
         """
 
         Performs a CAdES signature.
@@ -136,8 +138,22 @@ class CadesSigner(Signer):
         if not self.__encapsulate_content:
             args.append('--detached')
 
-        # Invoke command with plain text output (to support PKI Express < 1.3)
-        self._invoke_plain(self.COMMAND_SIGN_CADES, args)
+        if get_cert:
+            # This operation can only be used on version greater than 1.8 of the
+            # PKI Express.
+            self._version_manager.require_version('1.8')
+
+            # Invoke command.
+            result = self._invoke(self.COMMAND_SIGN_CADES, args)
+
+            # Parse output and return model.
+            return PKCertificate(
+                json.loads(base64.standard_b64decode(result[0])))
+
+        else:
+            # Invoke command with plain text output (to support
+            # PKI Express < 1.3).
+            self._invoke_plain(self.COMMAND_SIGN_CADES, args)
 
     @property
     def encapsulated_content(self):
