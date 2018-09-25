@@ -6,7 +6,7 @@ readme.close()
 
 setup(
     name='pkiexpress',
-    version='1.1.0',
+    version='1.2.0',
     author='Ismael Medeiros',
     author_email="IsmaelM@lacunasoftware.com",
     description='Classes to consume PKI Express',
