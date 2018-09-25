@@ -1,7 +1,9 @@
 import base64
 import binascii
+import json
 import os
 
+from .pk_certificate import PKCertificate
 from .pkiexpress_config import PkiExpressConfig
 from .pkiexpress_operator import PkiExpressOperator
 
@@ -106,7 +108,7 @@ class SignatureFinisher(PkiExpressOperator):
     def output_file(self, value):
         self.__output_file_path = value
 
-    def complete(self):
+    def complete(self, get_cert=False):
         if not self.__file_to_sign_path:
             raise Exception('The file to be signed was not set')
 
@@ -131,8 +133,23 @@ class SignatureFinisher(PkiExpressOperator):
             args.append('--data-file')
             args.append(self.__data_file_path)
 
-        # Invoke command with plain text output (to support PKI Express < 1.3)
-        self._invoke_plain(self.COMMAND_COMPLETE_SIG, args)
+        if get_cert:
+            # This operation can only be used on version greater than 1.8 of the
+            # PKI Express
+            self._version_manager.require_version('1.8')
+
+            # Invoke command.
+            result = self._invoke(self.COMMAND_COMPLETE_SIG, args)
+
+            # Parse output and return model.
+            return PKCertificate(
+                json.loads(base64.standard_b64decode(result[0])))
+
+        else:
+            # Invoke command with plain text output (to support
+            # PKI Express < 1.3).
+            self._invoke_plain(self.COMMAND_COMPLETE_SIG, args)
+
 
 
 __all__ = ['SignatureFinisher']

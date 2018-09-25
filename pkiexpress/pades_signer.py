@@ -8,6 +8,7 @@ import binascii
 import json
 import os
 
+from .pk_certificate import PKCertificate
 from .signer import Signer
 from .pkiexpress_config import PkiExpressConfig
 
@@ -102,7 +103,7 @@ class PadesSigner(Signer):
 
     # endregion
 
-    def sign(self):
+    def sign(self, get_cert=False):
         """
 
         Performs a PAdES signature.
@@ -129,8 +130,22 @@ class PadesSigner(Signer):
             args.append('--visual-rep')
             args.append(self.__vr_json_path)
 
-        # Invoke command with plain text output (to support PKI Express < 1.3)
-        self._invoke_plain(self.COMMAND_SIGN_PADES, args)
+        if get_cert:
+            # This operation can only be used on version greater than 1.8 of the
+            # PKI Express.
+            self._version_manager.require_version('1.8')
+
+            # Invoke command.
+            result = self._invoke(self.COMMAND_SIGN_PADES, args)
+
+            # Parse output and return model.
+            return PKCertificate(
+                json.loads(base64.standard_b64decode(result[0])))
+
+        else:
+            # Invoke command with plain text output (to support
+            # PKI Express < 1.3).
+            self._invoke_plain(self.COMMAND_SIGN_PADES, args)
 
     @property
     def overwrite_original_file(self):
