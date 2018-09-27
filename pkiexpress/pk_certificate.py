@@ -31,6 +31,9 @@ class PKCertificate(object):
         self.__binary_thumbprint_sha256 = None
 
         signer = model.get('signer', None)
+        if signer is None:
+            signer = model.get('info', None)
+
         if signer is not None:
             self.__email_address = signer.get('emailAddress', None)
             self.__issuer_display_name = signer.get('issuerDisplayName', None)
