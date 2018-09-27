@@ -147,8 +147,8 @@ class CadesSigner(Signer):
             result = self._invoke(self.COMMAND_SIGN_CADES, args)
 
             # Parse output and return model.
-            return PKCertificate(
-                json.loads(base64.standard_b64decode(result[0])))
+            model = json.loads(base64.standard_b64decode(result[0]))
+            return PKCertificate(model.get('signer', None))
 
         else:
             # Invoke command with plain text output (to support
