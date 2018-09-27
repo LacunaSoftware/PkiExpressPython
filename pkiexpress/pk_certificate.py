@@ -30,38 +30,34 @@ class PKCertificate(object):
         self.__issuer = None
         self.__binary_thumbprint_sha256 = None
 
-        signer = model.get('signer', None)
-        if signer is None:
-            signer = model.get('info', None)
+        if model is not None:
+            self.__email_address = model.get('emailAddress', None)
+            self.__issuer_display_name = model.get('issuerDisplayName', None)
+            self.__serial_number = model.get('serialNumber', None)
+            self.__thumbprint = model.get('thumbprint', None)
+            self.__validity_start = model.get('validityStart', None)
+            self.__validity_end = model.get('validityEnd', None)
 
-        if signer is not None:
-            self.__email_address = signer.get('emailAddress', None)
-            self.__issuer_display_name = signer.get('issuerDisplayName', None)
-            self.__serial_number = signer.get('serialNumber', None)
-            self.__thumbprint = signer.get('thumbprint', None)
-            self.__validity_start = signer.get('validityStart', None)
-            self.__validity_end = signer.get('validityEnd', None)
+            if model.get('subjectName', None) is not None:
+                self.__subject_name = Name(model.get('subjectName'))
 
-            if signer.get('subjectName', None) is not None:
-                self.__subject_name = Name(signer.get('subjectName'))
+            if model.get('issuerName', None) is not None:
+                self.__issuer_name = Name(model.get('issuerName'))
 
-            if signer.get('issuerName', None) is not None:
-                self.__issuer_name = Name(signer.get('issuerName'))
-
-            if signer.get('pkiBrazil', None) is not None:
+            if model.get('pkiBrazil', None) is not None:
                 self.__pki_brazil = PkiBrazilCertificateFields(
-                    signer.get('pkiBrazil'))
+                    model.get('pkiBrazil'))
 
-            if signer.get('pkiItaly', None) is not None:
+            if model.get('pkiItaly', None) is not None:
                 self.__pki_italy = PkiItalyCertificateFields(
-                    signer.get('pkiItaly'))
+                    model.get('pkiItaly'))
 
-            if signer.get('issuer', None) is not None:
-                self.__issuer = PKCertificate(signer.get('issuer'))
+            if model.get('issuer', None) is not None:
+                self.__issuer = PKCertificate(model.get('issuer'))
 
-            if signer.get('binaryThumbprintSHA256', None) is not None:
+            if model.get('binaryThumbprintSHA256', None) is not None:
                 self.__binary_thumbprint_sha256 = base64.standard_b64decode(
-                    signer.get('binaryThumbprintSHA256'))
+                    model.get('binaryThumbprintSHA256'))
 
     @property
     def subject_name(self):

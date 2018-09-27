@@ -61,7 +61,8 @@ class CertificateReader(PkiExpressOperator):
         result = self._invoke(self.COMMAND_READ_CERT, args)
 
         # Parse output and return model.
-        return PKCertificate(json.loads(base64.standard_b64decode(result[0])))
+        model = json.loads(base64.standard_b64decode(result[0]))
+        return PKCertificate(model.get('info', None))
 
 
 __all__ = ['CertificateReader']
