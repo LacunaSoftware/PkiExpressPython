@@ -26,6 +26,7 @@ class PkiExpressOperator(object):
     COMMAND_OPEN_PADES = 'open-pades'
     COMMAND_OPEN_CADES = 'open-cades'
     COMMAND_EDIT_PDF = 'edit-pdf'
+    COMMAND_MERGE_CMS = 'merge-cms'
     COMMAND_START_AUTH = 'start-auth'
     COMMAND_COMPLETE_AUTH = 'complete-auth'
     COMMAND_STAMP_PDF = 'stamp-pdf'

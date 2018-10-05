@@ -5,6 +5,7 @@ Import all elements of the library to facilitate its importation from user.
 """
 
 import pkiexpress.base_signer
+import pkiexpress.cades_signature_editor
 import pkiexpress.cades_signature_starter
 import pkiexpress.cades_signer
 import pkiexpress.certificate_reader
@@ -26,6 +27,7 @@ import pkiexpress.version
 import pkiexpress.version_manager
 
 from pkiexpress.base_signer import BaseSigner
+from pkiexpress.cades_signature_editor import CadesSignatureEditor
 from pkiexpress.cades_signature_starter import CadesSignatureStarter
 from pkiexpress.cades_signer import CadesSigner
 from pkiexpress.certificate_reader import CertificateReader
