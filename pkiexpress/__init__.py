@@ -9,6 +9,7 @@ import pkiexpress.cades_signature_editor
 import pkiexpress.cades_signature_starter
 import pkiexpress.cades_signer
 import pkiexpress.certificate_reader
+import pkiexpress.installation_not_found_error
 import pkiexpress.name
 import pkiexpress.pades_signature_starter
 import pkiexpress.pades_signer
@@ -31,6 +32,7 @@ from pkiexpress.cades_signature_editor import CadesSignatureEditor
 from pkiexpress.cades_signature_starter import CadesSignatureStarter
 from pkiexpress.cades_signer import CadesSigner
 from pkiexpress.certificate_reader import CertificateReader
+from pkiexpress.installation_not_found_error import InstallationNotFoundError
 from pkiexpress.name import Name
 from pkiexpress.pades_signature_starter import PadesSignatureStarter
 from pkiexpress.pades_signer import PadesSigner
@@ -52,6 +54,7 @@ __all__ += pkiexpress.base_signer.__all__
 __all__ += pkiexpress.cades_signature_starter.__all__
 __all__ += pkiexpress.cades_signer.__all__
 __all__ += pkiexpress.certificate_reader.__all__
+__all__ += pkiexpress.installation_not_found_error.__all__
 __all__ += pkiexpress.name.__all__
 __all__ += pkiexpress.pades_signature_starter.__all__
 __all__ += pkiexpress.pades_signer.__all__
