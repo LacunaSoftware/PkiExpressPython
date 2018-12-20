@@ -9,6 +9,7 @@ from abc import ABCMeta
 from subprocess import Popen, PIPE
 from distutils.version import StrictVersion
 
+from .installation_not_found_error import InstallationNotFoundError
 from .pkiexpress_config import PkiExpressConfig
 from .version_manager import VersionManager
 
@@ -98,8 +99,12 @@ class PkiExpressOperator(object):
             cmd_args.append(self._version_manager.min_version.__str__())
 
         # Perform the "dotnet" command
-        proc = Popen(cmd_args, stderr=PIPE, stdout=PIPE)
-        (output, _), code = proc.communicate(), proc.returncode
+        try:
+            proc = Popen(cmd_args, stderr=PIPE, stdout=PIPE)
+            (output, _), code = proc.communicate(), proc.returncode
+        except (OSError, FileNotFoundError):
+            raise InstallationNotFoundError('Could not find PKI Express\'s installation')
+
         if code != 0:
             split_output = output.decode('ascii').split(os.linesep)
             if code == 1 and \
