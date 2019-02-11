@@ -135,11 +135,13 @@ class PkiExpressOperator(object):
 
             if system == 'linux':
                 if not os.path.exists(os.path.join(home, 'pkie.dll')):
-                    raise Exception("The file pkie.dll could not be found on"
-                                    "directory %s" % home)
+                    raise InstallationNotFoundError(
+                        "The file pkie.dll could not be found on directory %s" %
+                        home)
             elif not os.path.exists(os.path.join(home, 'pkie.exe')):
-                raise Exception("The file pki.exe could not be found on "
-                                "directory %s" % home)
+                raise InstallationNotFoundError(
+                    "The file pki.exe could not be found on directory %s" %
+                    home)
 
         elif system == 'win':
 
@@ -176,10 +178,11 @@ class PkiExpressOperator(object):
                                     'PKI Express (x86)')
 
             if home is None or len(home) <= 0:
-                raise Exception('Could not determine the installation folder '
-                                'of PKI Express. If you installed PKI Express '
-                                'on a custom folder, make sure your are '
-                                'specifying it on the PkiExpressConfig object')
+                raise InstallationNotFoundError(
+                    'Could not determine the installation folder of PKI '
+                    'Express. If you installed PKI Express on a custom folder, '
+                    'make sure your are specifying it on the PkiExpressConfig '
+                    'object')
 
         if system == 'linux':
 
