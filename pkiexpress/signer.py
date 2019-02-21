@@ -5,7 +5,7 @@ import os
 from abc import ABCMeta, abstractmethod
 
 from .base_signer import BaseSigner
-from .pkiexpress_config import PkiExpressConfig
+from .pki_express_config import PkiExpressConfig
 
 
 class Signer(BaseSigner):

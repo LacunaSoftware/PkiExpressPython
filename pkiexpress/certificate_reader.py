@@ -9,8 +9,8 @@ import json
 import os
 
 from .pk_certificate import PKCertificate
-from .pkiexpress_config import PkiExpressConfig
-from .pkiexpress_operator import PkiExpressOperator
+from .pki_express_config import PkiExpressConfig
+from .pki_express_operator import PkiExpressOperator
 
 
 class CertificateReader(PkiExpressOperator):

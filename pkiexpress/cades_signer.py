@@ -10,7 +10,7 @@ import os
 
 from .pk_certificate import PKCertificate
 from .signer import Signer
-from .pkiexpress_config import PkiExpressConfig
+from .pki_express_config import PkiExpressConfig
 
 
 class CadesSigner(Signer):

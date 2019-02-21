@@ -7,7 +7,7 @@ import base64
 import binascii
 import os
 
-from .pkiexpress_config import PkiExpressConfig
+from .pki_express_config import PkiExpressConfig
 from .signature_starter import SignatureStarter
 
 

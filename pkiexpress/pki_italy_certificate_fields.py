@@ -4,6 +4,7 @@ Module that contains the class PkiItalyCertificateFields.
 
 """
 
+
 class PkiItalyCertificateFields:
 
     def __init__(self, model):

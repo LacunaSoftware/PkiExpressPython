@@ -4,8 +4,8 @@ import json
 import os
 
 from .pk_certificate import PKCertificate
-from .pkiexpress_config import PkiExpressConfig
-from .pkiexpress_operator import PkiExpressOperator
+from .pki_express_config import PkiExpressConfig
+from .pki_express_operator import PkiExpressOperator
 
 
 class SignatureFinisher(PkiExpressOperator):
@@ -149,7 +149,6 @@ class SignatureFinisher(PkiExpressOperator):
             # Invoke command with plain text output (to support
             # PKI Express < 1.3).
             self._invoke_plain(self.COMMAND_COMPLETE_SIG, args)
-
 
 
 __all__ = ['SignatureFinisher']
