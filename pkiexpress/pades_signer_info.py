@@ -1,4 +1,4 @@
-from .cades_signer_info import CadesSignerInfo
+from .cades_signature import CadesSignerInfo
 
 
 class PadesSignerInfo(CadesSignerInfo):

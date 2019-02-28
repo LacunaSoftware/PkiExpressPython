@@ -69,5 +69,47 @@ class PdfMark(object):
     def page_option_number(self, value):
         self.__page_option_number = value
 
+    # region Fluent API
+
+    def on_container(self, container):
+        self.__container = container
+        return self
+
+    def with_border_width(self, border_width):
+        self.__border_width = border_width
+        return self
+
+    def on_all_pages(self):
+        self.__page_option = PdfMarkPageOptions.ALL_PAGES
+        return self
+
+    def on_new_page(self):
+        self.__page_option = PdfMarkPageOptions.NEW_PAGE
+        return self
+
+    def on_single_page(self, page_number):
+        self.__page_option = PdfMarkPageOptions.SINGLE_PAGE
+        self.__page_option_number = page_number
+        return self
+
+    def on_single_page_from_end(self, page_number):
+        self.__page_option = PdfMarkPageOptions.SINGLE_PAGE_FROM_END
+        self.__page_option_number = page_number
+        return self
+
+    def add_element(self, element):
+        self.__elements.append(element)
+        return self
+
+    def with_border_color(self, border_color):
+        self.__border_color = border_color
+        return self
+
+    def with_background_color(self, background_color):
+        self.__background_color = background_color
+        return self
+
+    # endregion
+
 
 __all__ = ['PdfMark']

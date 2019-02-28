@@ -1,7 +1,7 @@
 import base64
 import binascii
 
-from .signature_algorithm import SignatureAlgorithm
+from .pk_algorithm import SignatureAlgorithm
 
 
 class SignatureAlgorithmAndValue(object):
