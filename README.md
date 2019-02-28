@@ -8,7 +8,7 @@ The recommend way to install **PKI Express for Python** is through [PyPi](https:
 
 Or informing on your project's `requirements.txt` file:
 
-    pkiexpress==1.3.2
+    pkiexpress==1.4.0
 
 ## Documentation
 
