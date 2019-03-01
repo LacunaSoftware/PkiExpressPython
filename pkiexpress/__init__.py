@@ -4,6 +4,9 @@ Import all elements of the library to facilitate its importation from user.
 
 """
 
+import pkiexpress.auth_complete_result
+import pkiexpress.auth_start_result
+import pkiexpress.authentication
 import pkiexpress.base_signer
 import pkiexpress.cades_signature
 import pkiexpress.cades_signature_editor
@@ -57,6 +60,9 @@ import pkiexpress.validation
 import pkiexpress.version
 import pkiexpress.version_manager
 
+from pkiexpress.auth_complete_result import AuthCompleteResult
+from pkiexpress.auth_start_result import AuthStartResult
+from pkiexpress.authentication import Authentication
 from pkiexpress.base_signer import BaseSigner
 from pkiexpress.cades_signature import CadesSignature
 from pkiexpress.cades_signature import CadesSignerInfo
@@ -124,6 +130,9 @@ from pkiexpress.version import __version__
 from pkiexpress.version_manager import VersionManager
 
 __all__ = []
+__all__ += pkiexpress.auth_complete_result.__all__
+__all__ += pkiexpress.auth_start_result.__all__
+__all__ += pkiexpress.authentication.__all__
 __all__ += pkiexpress.base_signer.__all__
 __all__ += pkiexpress.cades_signature.__all__
 __all__ += pkiexpress.cades_signature_starter.__all__

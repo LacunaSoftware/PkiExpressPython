@@ -62,6 +62,7 @@ class PdfMarkElement(object):
 
     def with_opacity(self, opacity):
         self.__opacity = opacity
+        return self
 
     # endregion
 

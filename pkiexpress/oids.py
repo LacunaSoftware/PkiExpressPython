@@ -16,9 +16,9 @@ class Oids(object):
     SHA384_WITH_RSA = '1.2.840.113549.1.1.12'
     SHA512_WITH_RSA = '1.2.840.113549.1.1.13'
 
-    SHA1_WITH_DSA: '1.2.840.10040.4.3'          # RFC 3279 section 2.2.2
+    SHA1_WITH_DSA = '1.2.840.10040.4.3'           # RFC 3279 section 2.2.2
     # SHA224_WITH_DSA = '2.16.840.1.101.3.4.3.1'  # RFC 5758 section 3.1
-    SHA256_WITH_DSA: '2.16.840.1.101.3.4.3.2'   # RFC 5758 section 3.1
+    SHA256_WITH_DSA = '2.16.840.1.101.3.4.3.2'    # RFC 5758 section 3.1
     # endregion
 
     # region Asymmetric Algorithms

@@ -111,5 +111,19 @@ class PdfMark(object):
 
     # endregion
 
+    def to_model(self):
+        return {
+            'container': self.__container.to_model()
+            if self.__container is not None else None,
+            'backgroundColor': self.__background_color.to_model()
+            if self.__background_color is not None else None,
+            'borderColor': self.__border_color.to_model()
+            if self.__border_color is not None else None,
+            'borderWidth': self.__border_width,
+            'pageOption': self.__page_option,
+            'pageOptionNumber': self.__page_option_number,
+            'elements': [e.to_model() for e in self.__elements]
+        }
+
 
 __all__ = ['PdfMark']

@@ -120,7 +120,7 @@ class PdfMarker(PkiExpressOperator):
         }
         temp_file_path = self.create_temp_file()
         with open(temp_file_path, 'wb') as file_desc:
-            file_desc.write(json.dumps(request))
+            file_desc.write(json.dumps(request).encode('ascii'))
         args.append(temp_file_path)
 
         # Logic to overwrite original file or use the output file.
@@ -131,7 +131,7 @@ class PdfMarker(PkiExpressOperator):
 
         # This operation can only be used on versions greater than 1.3 of the
         # PKI Express.
-        self._version_manager.require('1.3')
+        self._version_manager.require_version('1.3')
 
         # Invoke command.
         self._invoke(self.COMMAND_EDIT_PDF, args)

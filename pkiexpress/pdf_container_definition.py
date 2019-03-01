@@ -65,11 +65,11 @@ class PdfContainerDefinition(object):
         def __init__(self, container):
             self.__container = container
 
-        def archor_top(self, margin=0.0):
+        def anchor_top(self, margin=0.0):
             self.__container.top = margin
             return self.__container
 
-        def archor_bottom(self, margin=0.0):
+        def anchor_bottom(self, margin=0.0):
             self.__container.bottom = margin
             return self.__container
 

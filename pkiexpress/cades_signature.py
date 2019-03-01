@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from .validation import ValidationResults
 from .digest_algorithm_and_value import DigestAlgorithmAndValue
 from .signature_algorithm_and_value import SignatureAlgorithmAndValue
@@ -79,9 +81,20 @@ class CadesTimestamp(CadesSignature):
 class CadesSignerInfo(object):
 
     def __init__(self, model):
-        self.__signing_time = model.get('signingTime', None)
         self.__certified_date_reference = \
             model.get('certifiedDateReference', None)
+
+        self.__signing_time = None
+        signing_time = model.get('signingTime', None)
+        if signing_time is not None:
+            # Parse date string from ISO 8601 pattern.
+            # Partial solution:
+            # - return a datetime without timezone information.
+            # Reason:
+            # - Python doesn't have a good support for parsing string with
+            # timezone.
+            s_time = signing_time[:-6]
+            self.__signing_time = datetime.strptime(s_time, '%Y-%m-%dT%H:%M:%S')
 
         self.__message_digest = None
         message_digest = model.get('messageDigest', None)

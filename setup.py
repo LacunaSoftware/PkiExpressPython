@@ -6,7 +6,7 @@ readme.close()
 
 setup(
     name='pkiexpress',
-    version='1.3.2',
+    version='1.4.0',
     author='Ismael Medeiros',
     author_email="IsmaelM@lacunasoftware.com",
     description='Classes to consume PKI Express',
@@ -14,7 +14,7 @@ setup(
     keywords='python pki express certificate digital signature x509',
     url='https://github.com/LacunaSoftware/PkiExpressPython',
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
-    classifiers=(
+    classifiers=[
         'Intended Audience :: Developers',
         'Intended Audience :: Financial and Insurance Industry',
         'Intended Audience :: Information Technology',
@@ -28,6 +28,6 @@ setup(
         'Topic :: Security',
         'Topic :: Security :: Cryptography',
         'Topic :: Software Development :: Libraries :: Python Modules'
-    ),
+    ],
     install_requires=[],
 )
