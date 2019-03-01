@@ -2,6 +2,7 @@ import base64
 import binascii
 import os
 
+from pkiexpress.utils import _base64_encode_string
 from .auth_complete_result import AuthCompleteResult
 from .auth_start_result import AuthStartResult
 from .pki_express_config import PkiExpressConfig
@@ -50,7 +51,7 @@ class Authentication(PkiExpressOperator):
         nonce_raw = self.__get_nonce()
         if nonce_raw is None:
             return None
-        return base64.standard_b64encode(nonce_raw)
+        return _base64_encode_string(nonce_raw)
 
     @nonce_base64.setter
     def nonce_base64(self, value):
@@ -122,7 +123,7 @@ class Authentication(PkiExpressOperator):
         content_raw = self.__get_certificate_raw()
         if content_raw is None:
             return None
-        return base64.standard_b64encode(content_raw)
+        return _base64_encode_string(content_raw)
 
     @certificate_base64.setter
     def certificate_base64(self, value):
@@ -169,7 +170,7 @@ class Authentication(PkiExpressOperator):
         signature_raw = self.__get_signature()
         if signature_raw is None:
             return None
-        return base64.standard_b64decode(signature_raw)
+        return _base64_encode_string(signature_raw)
 
     @signature_base64.setter
     def signature_base64(self, value):
@@ -258,3 +259,6 @@ class Authentication(PkiExpressOperator):
         # Parse output and return result.
         model = self._parse_output(response[0])
         return AuthCompleteResult(model)
+
+
+__all__ = ['Authentication']

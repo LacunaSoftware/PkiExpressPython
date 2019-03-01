@@ -2,7 +2,7 @@ class AuthStartResult(object):
 
     def __init__(self, model):
         self.__nonce = model.get('toSignData', None)
-        self.__digest_algorithm = model.get('digestAlgorithm', None)
+        self.__digest_algorithm = model.get('digestAlgorithmName', None)
         self.__digest_algorithm_oid = model.get('digestAlgorithmOid', None)
 
     @property

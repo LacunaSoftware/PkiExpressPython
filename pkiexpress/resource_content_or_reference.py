@@ -1,5 +1,7 @@
 import base64
 
+from pkiexpress.utils import _base64_encode_string
+
 
 class ResourceContentOrReference(object):
 
@@ -34,7 +36,7 @@ class ResourceContentOrReference(object):
 
     def to_model(self):
         return {
-            'content': base64.standard_b64encode(self.__content)
+            'content': _base64_encode_string(self.__content)
             if self.__content is not None else None,
             'url': self.__url,
             'mimeType': self.__mime_type

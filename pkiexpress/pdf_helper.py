@@ -29,7 +29,7 @@ class PdfHelper(object):
         return PdfMarkQRCodeElement()
 
     @staticmethod
-    def text_section(text):
+    def text_section(text=None):
         return PdfTextSection(text)
 
 

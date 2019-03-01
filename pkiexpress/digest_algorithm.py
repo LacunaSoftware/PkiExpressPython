@@ -77,15 +77,15 @@ class DigestAlgorithm(object):
 
     @staticmethod
     def get_instance_by_api_model(algorithm):
-        if algorithm is DigestAlgorithms.MD5:
+        if algorithm == DigestAlgorithms.MD5:
             return DigestAlgorithm.MD5
-        elif algorithm is DigestAlgorithms.SHA1:
+        elif algorithm == DigestAlgorithms.SHA1:
             return DigestAlgorithm.SHA1
-        elif algorithm is DigestAlgorithms.SHA256:
+        elif algorithm == DigestAlgorithms.SHA256:
             return DigestAlgorithm.SHA256
-        elif algorithm is DigestAlgorithms.SHA384:
+        elif algorithm == DigestAlgorithms.SHA384:
             return DigestAlgorithm.SHA384
-        elif algorithm is DigestAlgorithms.SHA512:
+        elif algorithm == DigestAlgorithms.SHA512:
             return DigestAlgorithm.SHA512
         else:
             raise Exception('Unsupported digest algorithm: %s' % algorithm)

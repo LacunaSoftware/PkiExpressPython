@@ -41,7 +41,12 @@ class DigestAlgorithmAndValue(object):
 
     @property
     def hex_value(self):
-        return binascii.hexlify(self.__value)
+        hex_val = binascii.hexlify(self.__value)
+        if type(hex_val) is str:
+            return hex_val
+        elif type(hex_val) is bytes or type(hex_val) is bytearray:
+            return hex_val.decode('ascii')
+        return None
 
     @hex_value.setter
     def hex_value(self, value):

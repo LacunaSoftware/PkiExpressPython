@@ -10,8 +10,10 @@ class SignatureAlgorithmAndValue(object):
         self.__algorithm = None
         algorithm_identifier = model.get('algorithmIdentifier', None)
         if algorithm_identifier is not None:
-            self.__algorithm = SignatureAlgorithm.\
-                get_instance_by_api_model(algorithm_identifier)
+            algorithm = algorithm_identifier.get('algorithm', None)
+            if algorithm is not None:
+                self.__algorithm = SignatureAlgorithm\
+                    .get_instance_by_api_model(algorithm)
 
         self.__value = None
         value = model.get('value', None)

@@ -88,15 +88,15 @@ class SignatureAlgorithm(object):
 
     @staticmethod
     def get_instance_by_api_model(algorithm):
-        if algorithm is SignatureAlgorithms.MD5_WITH_RSA:
+        if algorithm == SignatureAlgorithms.MD5_WITH_RSA:
             return SignatureAlgorithm.MD5_WITH_RSA
-        elif algorithm is SignatureAlgorithms.SHA1_WITH_RSA:
+        elif algorithm == SignatureAlgorithms.SHA1_WITH_RSA:
             return SignatureAlgorithm.SHA1_WITH_RSA
-        elif algorithm is SignatureAlgorithms.SHA256_WITH_RSA:
+        elif algorithm == SignatureAlgorithms.SHA256_WITH_RSA:
             return SignatureAlgorithm.SHA256_WITH_RSA
-        elif algorithm is SignatureAlgorithms.SHA384_WITH_RSA:
+        elif algorithm == SignatureAlgorithms.SHA384_WITH_RSA:
             return SignatureAlgorithm.SHA384_WITH_RSA
-        elif algorithm is SignatureAlgorithms.SHA512_WITH_RSA:
+        elif algorithm == SignatureAlgorithms.SHA512_WITH_RSA:
             return SignatureAlgorithm.SHA512_WITH_RSA
         else:
             raise Exception('Unsupported signature algorithm: %s' % algorithm)

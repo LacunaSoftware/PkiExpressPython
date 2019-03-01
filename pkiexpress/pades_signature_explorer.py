@@ -11,7 +11,7 @@ class PadesSignatureExplorer(SignatureExplorer):
         super(PadesSignatureExplorer, self).__init__(config)
 
     def open(self):
-        if self._signature_file_path:
+        if self._signature_file_path is None:
             raise Exception('The signature file was not set')
 
         args = [self._signature_file_path]

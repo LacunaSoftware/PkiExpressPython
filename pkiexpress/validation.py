@@ -10,6 +10,18 @@ class ValidationItem(object):
             self.__inner_validation_results = \
                 ValidationResults(inner_validation_results)
 
+    def __str__(self, indentation_level=0):
+        text = self.__message
+        if self.__detail is not None:
+            text += " (%s)" % self.__detail
+
+        if self.__inner_validation_results is not None:
+            text += '\n'
+            text += \
+                self.__inner_validation_results.__str__(indentation_level + 1)
+
+        return text
+
     @property
     def type(self):
         return self.__type
