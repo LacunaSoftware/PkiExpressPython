@@ -7,8 +7,8 @@ import base64
 import binascii
 import os
 
-from .pkiexpress_config import PkiExpressConfig
-from .pkiexpress_operator import PkiExpressOperator
+from .pki_express_config import PkiExpressConfig
+from .pki_express_operator import PkiExpressOperator
 
 
 class CadesSignatureEditor(PkiExpressOperator):
@@ -134,7 +134,8 @@ class CadesSignatureEditor(PkiExpressOperator):
             raise Exception('The CMS/CAdES files was not set')
 
         if len(self.__cms_files) < 2:
-            raise Exception('Insufficient CMS/CAdES files for merging. Provided at least two signatures.')
+            raise Exception('Insufficient CMS/CAdES files for merging. '
+                            'Provided at least two signatures.')
 
         if not self.__output_file_path:
             raise Exception('The output destination was not set')

@@ -4,8 +4,8 @@ Module containing the BaseSigner class.
 
 """
 from pkiexpress import standard_signature_policies
-from .pkiexpress_config import PkiExpressConfig
-from .pkiexpress_operator import PkiExpressOperator
+from .pki_express_config import PkiExpressConfig
+from .pki_express_operator import PkiExpressOperator
 
 
 class BaseSigner(PkiExpressOperator):
@@ -50,6 +50,17 @@ class BaseSigner(PkiExpressOperator):
                 # These policies can only be used on version greater than 1.6
                 # of the PKI Express.
                 self._version_manager.require_version('1.6')
+
+            if self._signature_policy is \
+                    standard_signature_policies.PKI_BRAZIL_PADES_ADR_BASICA \
+                    and self._signature_policy is \
+                    standard_signature_policies\
+                            .PKI_BRAZIL_PADES_ADR_BASICA_WITH_LTV \
+                    and self._signature_policy is \
+                    standard_signature_policies.PKI_BRAZIL_PADES_ADR_TEMPO:
+                # These policies can only be used on version greater than 1.12
+                # of the PKI Express.
+                self._version_manager.require_version('1.12')
 
         # Add timestamp authority
         if self._timestamp_authority:

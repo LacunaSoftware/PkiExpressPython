@@ -8,7 +8,7 @@ import binascii
 import json
 import os
 
-from .pkiexpress_config import PkiExpressConfig
+from .pki_express_config import PkiExpressConfig
 from .signature_starter import SignatureStarter
 
 

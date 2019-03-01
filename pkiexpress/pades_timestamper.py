@@ -7,8 +7,8 @@ import base64
 import binascii
 import os
 
-from .pkiexpress_config import PkiExpressConfig
-from .pkiexpress_operator import PkiExpressOperator
+from .pki_express_config import PkiExpressConfig
+from .pki_express_operator import PkiExpressOperator
 
 
 class PadesTimestamper(PkiExpressOperator):

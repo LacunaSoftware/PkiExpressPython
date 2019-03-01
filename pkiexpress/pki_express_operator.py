@@ -10,7 +10,7 @@ from subprocess import Popen, PIPE
 from distutils.version import StrictVersion
 
 from .installation_not_found_error import InstallationNotFoundError
-from .pkiexpress_config import PkiExpressConfig
+from .pki_express_config import PkiExpressConfig
 from .version_manager import VersionManager
 
 
@@ -103,7 +103,8 @@ class PkiExpressOperator(object):
             proc = Popen(cmd_args, stderr=PIPE, stdout=PIPE)
             (output, _), code = proc.communicate(), proc.returncode
         except (OSError, FileNotFoundError):
-            raise InstallationNotFoundError('Could not find PKI Express\'s installation')
+            raise InstallationNotFoundError('Could not find PKI Express\'s '
+                                            'installation')
 
         if code != 0:
             split_output = output.decode('ascii').split(os.linesep)
@@ -206,7 +207,7 @@ class PkiExpressOperator(object):
         return hex(rnd_bytes)
 
     @staticmethod
-    def parse_output(data_base64):
+    def _parse_output(data_base64):
         content = base64.standard_b64decode(str(data_base64))
         obj_dict = json.loads(content)
         return obj_dict
