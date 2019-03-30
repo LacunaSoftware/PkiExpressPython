@@ -46,6 +46,8 @@ class PkiExpressOperator(object):
         self._trust_lacuna_test_root = False
         self._signature_policy = None
         self._timestamp_authority = None
+        self._crl_download_timeout = None
+        self._ca_issuers_download_timeout = None
 
     def __del__(self):
         for temp_file in self.__temp_files:
@@ -88,6 +90,20 @@ class PkiExpressOperator(object):
             # This option can only be used on versions greater than 1.2 of the
             # PKI Express
             self._version_manager.require_version('1.2')
+
+        if self._crl_download_timeout:
+            cmd_args.append('--crl-timeout')
+            cmd_args.append(self._crl_download_timeout)
+            # This option can only be used on versions greater than 1.13 of the
+            # PKI Express
+            self._version_manager.require_version('1.13')
+
+        if self._ca_issuers_download_timeout:
+            cmd_args.append('--ca-issuers-timeout')
+            cmd_args.append(self._ca_issuers_download_timeout)
+            # This option can only be used on versions greater than 1.13 of the
+            # PKI Express
+            self._version_manager.require_version('1.13')
 
         # Add base64 output option
         if not plain_output:
