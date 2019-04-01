@@ -133,7 +133,8 @@ class PadesTimestamper(PkiExpressOperator):
 
         # Add timestamp authority.
         if self._timestamp_authority:
-            self._timestamp_authority.add_cmd_arguments(args)
+            self._timestamp_authority\
+                .add_cmd_arguments(args, self._version_manager)
 
             # This option can only be used on versions greater then 1.5 of the
             # PKI Express.

@@ -94,16 +94,16 @@ class PkiExpressOperator(object):
         if self._crl_download_timeout:
             cmd_args.append('--crl-timeout')
             cmd_args.append(self._crl_download_timeout)
-            # This option can only be used on versions greater than 1.13 of the
-            # PKI Express
-            self._version_manager.require_version('1.13')
+            # This option can only be used on versions greater than 1.12.2 of
+            # the PKI Express
+            self._version_manager.require_version('1.12.2')
 
         if self._ca_issuers_download_timeout:
             cmd_args.append('--ca-issuers-timeout')
             cmd_args.append(self._ca_issuers_download_timeout)
-            # This option can only be used on versions greater than 1.13 of the
-            # PKI Express
-            self._version_manager.require_version('1.13')
+            # This option can only be used on versions greater than 1.12.2 of
+            # the PKI Express
+            self._version_manager.require_version('1.12.2')
 
         # Add base64 output option
         if not plain_output:

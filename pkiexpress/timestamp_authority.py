@@ -120,12 +120,13 @@ class TimestampAuthority(object):
 
     # endregion
 
-    def add_cmd_arguments(self, args):
+    def add_cmd_arguments(self, args, version_manager):
         """
 
         Adds the CMD arguments to the command related to the timestamp
         authority authentication.
         :param args: The CMD arguments.
+        :param version_manager: Version manager to inform the required version.
 
         """
         args.append('--tsa-url')
@@ -150,6 +151,9 @@ class TimestampAuthority(object):
         if self.__request_timeout:
             args.append('--ts-request-timeout')
             args.append(str(self.__request_timeout))
+            # This option can only be used on versions greater than 1.12.2 of
+            # the PKI Express
+            version_manager.require_version('1.12.2')
 
 
 __all__ = ['TimestampAuthority']
