@@ -23,6 +23,7 @@ class TimestampAuthority(object):
         self.__ssl_thumbprint = None
         self.__basic_auth = None
         self.__auth_type = TimestampAuthority.NONE
+        self.__request_timeout = 15
 
     def set_oauth_token_authentication(self, token):
         """
@@ -99,12 +100,33 @@ class TimestampAuthority(object):
         """
         return self.__basic_auth
 
-    def add_cmd_arguments(self, args):
+    # region "request_timeout" accessors
+
+    @property
+    def request_timeout(self):
+        return self.__get_request_timeout()
+
+    def __get_request_timeout(self):
+        return self.__request_timeout
+
+    @request_timeout.setter
+    def request_timeout(self, value):
+        self.__set_request_timeout(value)
+
+    def __set_request_timeout(self, value):
+        if value is None:
+            raise Exception('The provided "request_timeout" is not valid')
+        self.__request_timeout = value
+
+    # endregion
+
+    def add_cmd_arguments(self, args, version_manager):
         """
 
         Adds the CMD arguments to the command related to the timestamp
         authority authentication.
         :param args: The CMD arguments.
+        :param version_manager: Version manager to inform the required version.
 
         """
         args.append('--tsa-url')
@@ -125,6 +147,13 @@ class TimestampAuthority(object):
         else:
             raise Exception('Unknown authentication type of the timestamp'
                             'authority')
+
+        if self.__request_timeout:
+            args.append('--ts-request-timeout')
+            args.append(str(self.__request_timeout))
+            # This option can only be used on versions greater than 1.12.2 of
+            # the PKI Express
+            version_manager.require_version('1.12.2')
 
 
 __all__ = ['TimestampAuthority']
