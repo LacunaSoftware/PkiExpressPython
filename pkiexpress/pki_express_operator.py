@@ -93,14 +93,14 @@ class PkiExpressOperator(object):
 
         if self._crl_download_timeout:
             cmd_args.append('--crl-timeout')
-            cmd_args.append(self._crl_download_timeout)
+            cmd_args.append(str(self._crl_download_timeout))
             # This option can only be used on versions greater than 1.12.2 of
             # the PKI Express
             self._version_manager.require_version('1.12.2')
 
         if self._ca_issuers_download_timeout:
             cmd_args.append('--ca-issuers-timeout')
-            cmd_args.append(self._ca_issuers_download_timeout)
+            cmd_args.append(str(self._ca_issuers_download_timeout))
             # This option can only be used on versions greater than 1.12.2 of
             # the PKI Express
             self._version_manager.require_version('1.12.2')
@@ -118,7 +118,7 @@ class PkiExpressOperator(object):
         try:
             proc = Popen(cmd_args, stderr=PIPE, stdout=PIPE)
             (output, _), code = proc.communicate(), proc.returncode
-        except (OSError, FileNotFoundError):
+        except OSError:
             raise InstallationNotFoundError('Could not find PKI Express\'s '
                                             'installation')
 
@@ -270,6 +270,47 @@ class PkiExpressOperator(object):
     @timestamp_authority.setter
     def timestamp_authority(self, value):
         self._timestamp_authority = value
+
+    # region "crl_download_timeout" accessors
+
+    @property
+    def crl_download_timeout(self):
+        return self.__get_crl_download_timeout()
+
+    def __get_crl_download_timeout(self):
+        return self._crl_download_timeout
+
+    @crl_download_timeout.setter
+    def crl_download_timeout(self, value):
+        self.__set_crl_download_timeout(value)
+
+    def __set_crl_download_timeout(self, value):
+        if value is None:
+            raise Exception('The provided "crl_download_timeout" is not valid')
+        self._crl_download_timeout = value
+
+    # endregion
+
+    # region "ca_issuers_download_timeout" accessors
+
+    @property
+    def ca_issuers_download_timeout(self):
+        return self.__get_ca_issuers_download_timeout()
+
+    def __get_ca_issuers_download_timeout(self):
+        return self._ca_issuers_download_timeout
+
+    @ca_issuers_download_timeout.setter
+    def ca_issuers_download_timeout(self, value):
+        self.__set_ca_issuers_download_timeout(value)
+
+    def __set_ca_issuers_download_timeout(self, value):
+        if value is None:
+            raise Exception('The provided "ca_issuers_download_timeout" is not '
+                            'valid')
+        self._ca_issuers_download_timeout = value
+
+    # endregion
 
 
 __all__ = ['PkiExpressOperator']
