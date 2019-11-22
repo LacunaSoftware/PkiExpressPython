@@ -81,6 +81,9 @@ class CadesSignatureExplorer(SignatureExplorer):
 
         args = [self._signature_file_path]
 
+        # Verify and add common options
+        self._verify_and_add_common_options(args)
+
         if self._data_file_path:
             args.append('--data-file')
             args.append(self._data_file_path)
@@ -94,7 +97,7 @@ class CadesSignatureExplorer(SignatureExplorer):
         self._version_manager.require_version('1.3')
 
         # Invoke command.
-        response = self._invoke(self.COMMAND_OPEN_PADES, args)
+        response = self._invoke(self.COMMAND_OPEN_CADES, args)
         output = CadesSignatureExplorer._parse_output(response[0])
         return CadesSignature(output)
 

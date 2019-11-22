@@ -16,8 +16,8 @@ class PadesSignatureExplorer(SignatureExplorer):
 
         args = [self._signature_file_path]
 
-        if self._validate:
-            args.append('--validate')
+        # Verify and add common options
+        self._verify_and_add_common_options(args)
 
         # This operation can only be used on versions greater than 1.3 of the
         # PKI Express.
