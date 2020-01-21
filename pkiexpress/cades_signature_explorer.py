@@ -47,7 +47,7 @@ class CadesSignatureExplorer(SignatureExplorer):
         temp_file_path = self.create_temp_file()
         with open(temp_file_path, 'wb') as file_desc:
             file_desc.write(content_raw)
-        self._signature_file_path = temp_file_path
+        self._data_file_path = temp_file_path
 
     def set_data_file_from_base64(self, content_base64):
         """
