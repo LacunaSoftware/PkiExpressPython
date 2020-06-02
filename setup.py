@@ -12,7 +12,7 @@ setup(
     description='Classes to consume PKI Express',
     long_description=long_description,
     keywords='python pki express certificate digital signature x509',
-    url='https://github.com/LacunaSoftware/PkiExpressPython',1.5.
+    url='https://github.com/LacunaSoftware/PkiExpressPython',
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
     classifiers=[
         'Intended Audience :: Developers',
