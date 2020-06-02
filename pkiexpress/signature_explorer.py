@@ -71,5 +71,12 @@ class SignatureExplorer(PkiExpressOperator):
     def validate(self, value):
         self._validate = value
 
+    def _verify_and_add_common_options(self, args):
+        if self._validate:
+            args.append('--validate')
+            # This operation can only be on versions greater than 1.3 of the
+            # PKI Express.
+            self._version_manager.require_version('1.3')
+
 
 __all__ = ['SignatureExplorer']

@@ -10,6 +10,7 @@ import pkiexpress.authentication
 import pkiexpress.base_signer
 import pkiexpress.cades_signature
 import pkiexpress.cades_signature_editor
+import pkiexpress.cades_signature_explorer
 import pkiexpress.cades_signature_starter
 import pkiexpress.cades_signer
 import pkiexpress.certificate_reader
@@ -68,6 +69,7 @@ from pkiexpress.cades_signature import CadesSignature
 from pkiexpress.cades_signature import CadesSignerInfo
 from pkiexpress.cades_signature import CadesTimestamp
 from pkiexpress.cades_signature_editor import CadesSignatureEditor
+from pkiexpress.cades_signature_explorer import CadesSignatureExplorer
 from pkiexpress.cades_signature_starter import CadesSignatureStarter
 from pkiexpress.cades_signer import CadesSigner
 from pkiexpress.certificate_reader import CertificateReader
@@ -135,6 +137,8 @@ __all__ += pkiexpress.auth_start_result.__all__
 __all__ += pkiexpress.authentication.__all__
 __all__ += pkiexpress.base_signer.__all__
 __all__ += pkiexpress.cades_signature.__all__
+__all__ += pkiexpress.cades_signature_editor.__all__
+__all__ += pkiexpress.cades_signature_explorer.__all__
 __all__ += pkiexpress.cades_signature_starter.__all__
 __all__ += pkiexpress.cades_signer.__all__
 __all__ += pkiexpress.certificate_reader.__all__
