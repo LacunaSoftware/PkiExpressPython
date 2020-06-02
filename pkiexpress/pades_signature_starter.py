@@ -25,6 +25,7 @@ class PadesSignatureStarter(SignatureStarter):
         super(PadesSignatureStarter, self).__init__(config)
         self.__pdf_to_sign_path = None
         self.__vr_json_path = None
+        self._suppress_default_visual_representation = False
 
     # region set_pdf_to_sign
 
@@ -69,6 +70,16 @@ class PadesSignatureStarter(SignatureStarter):
     # endregion
 
     # region set_visual_representation
+    def set_suppress_default_visual_representation(self, value):
+        """
+
+        Sets whether or not the default visual representation should be 
+        suppressed.
+        :param value: Boolean of whether the default visual representation 
+                      should be suppressed or not
+
+        """
+        self._suppress_default_visual_representation = value
 
     def set_visual_representation_file(self, path):
         """
@@ -130,6 +141,10 @@ class PadesSignatureStarter(SignatureStarter):
         if self.__vr_json_path:
             args.append('--visual-rep')
             args.append(self.__vr_json_path)
+
+        if self._suppress_default_visual_representation:
+            args.append('--suppress-default-visual-rep')
+            self._version_manager.require_version('1.13.1')
 
         # Invoke command with plain text output (to support PKI Express < 1.3)
         response = self._invoke_plain(self.COMMAND_START_PADES, args)

@@ -27,6 +27,7 @@ class PadesSigner(Signer):
         self.__pdf_to_sign_path = None
         self.__vr_json_path = None
         self.__overwrite_original_file = False
+        self._suppress_default_visual_representation = False
 
     # region set_pdf_to_sign
 
@@ -71,6 +72,16 @@ class PadesSigner(Signer):
     # endregion
 
     # region set_visual_representation
+    def set_suppress_default_visual_representation(self, value):
+        """
+
+        Sets whether or not the default visual representation should be 
+        suppressed.
+        :param value: Boolean of whether the default visual representation 
+                      should be suppressed or not
+
+        """
+        self._suppress_default_visual_representation = value
 
     def set_visual_representation_file(self, path):
         """
@@ -129,6 +140,10 @@ class PadesSigner(Signer):
         if self.__vr_json_path:
             args.append('--visual-rep')
             args.append(self.__vr_json_path)
+
+        if self._suppress_default_visual_representation:
+            args.append('--suppress-default-visual-rep')
+            self._version_manager.require_version('1.13.1')
 
         if get_cert:
             # This operation can only be used on version greater than 1.8 of the
