@@ -123,7 +123,7 @@ class PkiExpressOperator(object):
                                             'installation')
 
         if code != 0:
-            split_output = output.decode('ascii').split(os.linesep)
+            split_output = output.decode('cp860').split(os.linesep)
             if code == 1 and \
                     self._version_manager.min_version > StrictVersion('1.0'):
                 raise Exception('%s %s >>>>> TIP: This operation require '
