@@ -25,7 +25,7 @@ XML_DSIG_BASIC = 'basic'
 PKI_BRAZIL_XML_ADR_BASICA = 'adrb'
 PKI_BRAZIL_XML_ADR_TEMPO = 'adrt'
 COD_WITH_SHA1 = 'cod-sha1'
-COD_WITH_SHA256 = 'cod-sh256'
+COD_WITH_SHA256 = 'cod-sha256'
 
 
 def require_timestamp(policy):
