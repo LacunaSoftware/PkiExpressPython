@@ -85,6 +85,7 @@ from pkiexpress.digest_algorithm_and_value import DigestAlgorithmAndValue
 from pkiexpress.installation_not_found_error import InstallationNotFoundError
 from pkiexpress.name import Name
 from pkiexpress.oids import Oids
+from pkiexpress.pades_certification_level import PadesCertificationLevel
 from pkiexpress.pades_horizontal_align import PadesHorizontalAlign
 from pkiexpress.pades_measurement_units import PadesMeasurementUnits
 from pkiexpress.pades_signature import PadesSignature
@@ -148,6 +149,7 @@ __all__ += pkiexpress.digest_algorithm_and_value.__all__
 __all__ += pkiexpress.installation_not_found_error.__all__
 __all__ += pkiexpress.name.__all__
 __all__ += pkiexpress.oids.__all__
+__all__ += pkiexpress.pades_certification_level.__all__
 __all__ += pkiexpress.pades_horizontal_align.__all__
 __all__ += pkiexpress.pades_measurement_units.__all__
 __all__ += pkiexpress.pades_signature.__all__
