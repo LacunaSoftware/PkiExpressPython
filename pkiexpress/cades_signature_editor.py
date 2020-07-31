@@ -133,14 +133,21 @@ class CadesSignatureEditor(PkiExpressOperator):
         if not self.__cms_files:
             raise Exception('The CMS/CAdES files was not set')
 
-        if len(self.__cms_files) < 2:
+        if len(self.__cms_files) < 1:
             raise Exception('Insufficient CMS/CAdES files for merging. '
-                            'Provided at least two signatures.')
+                            'Provided at least one signature.')
 
         if not self.__output_file_path:
             raise Exception('The output destination was not set')
 
         args = [ self.__output_file_path ]
+
+        if len(self.__cms_files) == 1:
+            # This operation can only be used on version greater than 1.17 of the
+            # PKI Express.
+            self._version_manager.require_version('1.17')
+
+        # Add CMS files
         args.extend(self.__cms_files)
 
         if self.__data_file_path:
@@ -150,6 +157,8 @@ class CadesSignatureEditor(PkiExpressOperator):
         if not self.__encapsulate_content:
             args.append('--detached')
 
+        # This operation can only be used on version greater than 1.9 of the
+        # PKI Express.
         self._version_manager.require_version('1.9')
 
         # Invoke command.
