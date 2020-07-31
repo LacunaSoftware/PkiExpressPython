@@ -25,7 +25,9 @@ class PadesSignatureStarter(SignatureStarter):
         super(PadesSignatureStarter, self).__init__(config)
         self.__pdf_to_sign_path = None
         self.__vr_json_path = None
-        self._suppress_default_visual_representation = False
+        self.__suppress_default_visual_representation = False
+        self.__custom_signature_field_name = None
+        self.__certification_level = None
 
     # region set_pdf_to_sign
 
@@ -79,7 +81,7 @@ class PadesSignatureStarter(SignatureStarter):
                       should be suppressed or not
 
         """
-        self._suppress_default_visual_representation = value
+        self.__suppress_default_visual_representation = value
 
     def set_visual_representation_file(self, path):
         """
@@ -112,6 +114,22 @@ class PadesSignatureStarter(SignatureStarter):
 
     # endregion
 
+    @property
+    def custom_signature_field_name(self):
+        return self.__custom_signature_field_name
+
+    @custom_signature_field_name.setter
+    def custom_signature_field_name(self, value):
+        self.__custom_signature_field_name = value
+
+    @property
+    def certification_level(self):
+        return self.__certification_level
+
+    @certification_level.setter
+    def certification_level(self, value):
+        self.__certification_level = value
+
     def start(self):
         """
 
@@ -142,7 +160,21 @@ class PadesSignatureStarter(SignatureStarter):
             args.append('--visual-rep')
             args.append(self.__vr_json_path)
 
-        if self._suppress_default_visual_representation:
+        if self.__custom_signature_field_name:
+            args.append('--custom-signature-field-name')
+            args.append(self.__custom_signature_field_name)
+
+            # This option can only be used on versions greater than 1.15.0 of the PKI Express.
+            self._version_manager.require_version('1.15')
+
+        if self.__certification_level:
+            args.append('--certification-level')
+            args.append(self.__certification_level)
+
+            # This option can only be used on versions greater than 1.16.0 of the PKI Express.
+            self._version_manager.require_version('1.16')
+
+        if self.__suppress_default_visual_representation:
             args.append('--suppress-default-visual-rep')
             self._version_manager.require_version('1.13.1')
 
