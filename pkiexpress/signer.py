@@ -19,6 +19,7 @@ class Signer(BaseSigner):
         self._pkcs12_path = None
         self._cert_thumb = None
         self._cert_password = None
+        self._trust_service_session = None
 
     # region set_pkcs12
 
@@ -72,6 +73,14 @@ class Signer(BaseSigner):
     def cert_password(self, value):
         self._cert_password = value
 
+    @property
+    def trust_service_session(self):
+        return self._trust_service_session
+
+    @trust_service_session.setter
+    def trust_service_session(self, value):
+        self._trust_service_session = value
+
     @abstractmethod
     def sign(self):
         raise Exception('This method should be implemented')
@@ -80,9 +89,9 @@ class Signer(BaseSigner):
         # Verify and add common options between signers and signature starters.
         super(Signer, self)._verify_and_add_common_options(args)
 
-        if not self._cert_thumb and not self._pkcs12_path:
-            raise Exception("The certificate's thumbprint and the PKCS #12 were"
-                            "not set")
+        if not self._cert_thumb and not self._pkcs12_path and not self._trust_service_session:
+            raise Exception("No PKCS #12 file, certificate's thumbprint or "
+                            "TrustServiceSession was provided")
 
         if self._cert_thumb:
             args.append('--thumbprint')
@@ -104,6 +113,15 @@ class Signer(BaseSigner):
             # This operation can only be used on versions greater than 1.3 of
             # the PKI Express.
             self._version_manager.require_version('1.3')
+
+
+        # Add trust service session.
+        if self._trust_service_session:
+            args.append('--trust-service-session')
+            args.append(self._trust_service_session)
+            # This option can only be used on versions greater than 1.17 of 
+            # the PKI Express.
+            self._version_manager.require_version('1.17')
 
 
 __all__ = ['Signer']
