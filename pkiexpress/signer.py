@@ -119,9 +119,9 @@ class Signer(BaseSigner):
         if self._trust_service_session:
             args.append('--trust-service-session')
             args.append(self._trust_service_session)
-            # This option can only be used on versions greater than 1.17 of 
+            # This option can only be used on versions greater than 1.18 of 
             # the PKI Express.
-            self._version_manager.require_version('1.17')
+            self._version_manager.require_version('1.18')
 
 
 __all__ = ['Signer']

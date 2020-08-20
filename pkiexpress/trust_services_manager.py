@@ -23,9 +23,9 @@ class TrustServicesManager(PkiExpressOperator):
         args.append('--cpf')
         args.append(cpf)
 
-        # This operation can only be used on versions greater than 1.17 of
+        # This operation can only be used on versions greater than 1.18 of
         # the PKI Express.
-        self._version_manager.require_version('1.17')
+        self._version_manager.require_version('1.18')
 
         # Invoke command.
         response = self._invoke(self.COMMAND_CHECK_SERVICE, args)
@@ -46,9 +46,9 @@ class TrustServicesManager(PkiExpressOperator):
         if throw_exceptions:
             args.append('--throw')
 
-        # This operation can only be used on versions greater than 1.17 of
+        # This operation can only be used on versions greater than 1.18 of
         # the PKI Express.
-        self._version_manager.require_version('1.17')
+        self._version_manager.require_version('1.18')
 
         # Invoke command.
         response = self._invoke(self.COMMAND_DISCOVER_SERVICES, args)
@@ -70,9 +70,9 @@ class TrustServicesManager(PkiExpressOperator):
         if throw_exceptions:
             args.append('--throw')
 
-        # This operation can only be used on versions greater than 1.17 of
+        # This operation can only be used on versions greater than 1.18 of
         # the PKI Express.
-        self._version_manager.require_version('1.17')
+        self._version_manager.require_version('1.18')
 
         # Invoke command.
         response = self._invoke(self.COMMAND_DISCOVER_SERVICES, args)
@@ -119,9 +119,9 @@ class TrustServicesManager(PkiExpressOperator):
         if throw_exceptions:
             args.append('--throw')
 
-        # This operation can only be used on versions greater than 1.17 of
+        # This operation can only be used on versions greater than 1.18 of
         # the PKI Express.
-        self._version_manager.require_version('1.17')
+        self._version_manager.require_version('1.18')
 
         # Invoke command.
         response = self._invoke(self.COMMAND_DISCOVER_SERVICES, args)
@@ -159,9 +159,9 @@ class TrustServicesManager(PkiExpressOperator):
         # Add sessionType.
         args.append(session_type)
 
-        # This operation can only be used on versions greater than 1.17 of
+        # This operation can only be used on versions greater than 1.18 of
         # the PKI Express.
-        self._version_manager.require_version('1.17')
+        self._version_manager.require_version('1.18')
 
         # Invoke command.
         response = self._invoke(self.COMMAND_PASSWORD_AUTHORIZE, args)
@@ -185,9 +185,9 @@ class TrustServicesManager(PkiExpressOperator):
         # Add state
         args.append(state)
 
-        # This operation can only be used on versions greater than 1.17 of
+        # This operation can only be used on versions greater than 1.18 of
         # the PKI Express.
-        self._version_manager.require_version('1.17')
+        self._version_manager.require_version('1.18')
 
         # Invoke command.
         response = self._invoke(self.COMMAND_COMPLETE_SERVICE_AUTH, args)

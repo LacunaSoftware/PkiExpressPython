@@ -143,9 +143,9 @@ class CadesSignatureEditor(PkiExpressOperator):
         args = [ self.__output_file_path ]
 
         if len(self.__cms_files) == 1:
-            # This operation can only be used on version greater than 1.17 of the
+            # This operation can only be used on version greater than 1.18 of the
             # PKI Express.
-            self._version_manager.require_version('1.17')
+            self._version_manager.require_version('1.18')
 
         # Add CMS files
         args.extend(self.__cms_files)
