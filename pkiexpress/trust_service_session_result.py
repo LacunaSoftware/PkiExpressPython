@@ -1,4 +1,4 @@
-from utils import convert_datetime_from_service
+from pkiexpress.utils import _convert_datetime_from_service
 
 class TrustServiceSessionResult():
     def __init__(self, model):
@@ -10,7 +10,7 @@ class TrustServiceSessionResult():
         self.__expires_on = None
         self.__expires_on_str = model.get("expiresOn", None)
         if(self.__expires_on_str is not None):
-            self.__expires_on = convert_datetime_from_service(self.__expires_on_str)
+            self.__expires_on = _convert_datetime_from_service(self.__expires_on_str)
 
     def get_session(self):
         return self.__session
