@@ -32,6 +32,11 @@ class PkiExpressOperator(object):
     COMMAND_COMPLETE_AUTH = 'complete-auth'
     COMMAND_STAMP_PDF = 'stamp-pdf'
     COMMAND_READ_CERT = 'read-cert'
+    COMMAND_CREATE_PFX = 'create-pfx'
+    COMMAND_CHECK_SERVICE = 'check-service'
+    COMMAND_DISCOVER_SERVICES = 'discover-services'
+    COMMAND_PASSWORD_AUTHORIZE = 'pwd-auth'
+    COMMAND_COMPLETE_SERVICE_AUTH = 'complete-service-auth'
 
     def __init__(self, config=None):
         self.__temp_files = []
@@ -79,6 +84,12 @@ class PkiExpressOperator(object):
             for key, value in self.__file_references.items():
                 cmd_args.append('--file-reference')
                 cmd_args.append("%s=%s" % (key, value))
+
+        # Add trusted roots if added
+        if self._trusted_roots:
+            for root in self._trusted_roots:
+                cmd_args.append('--trust-root')
+                cmd_args.append(root)
 
         # Add trust Lacuna test root if set
         if self._trust_lacuna_test_root:

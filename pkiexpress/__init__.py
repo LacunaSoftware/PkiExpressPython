@@ -15,6 +15,8 @@ import pkiexpress.cades_signature_starter
 import pkiexpress.cades_signer
 import pkiexpress.certificate_reader
 import pkiexpress.color
+import pkiexpress.check_service_result
+import pkiexpress.discover_services_result
 import pkiexpress.digest_algorithm
 import pkiexpress.digest_algorithm_and_value
 import pkiexpress.installation_not_found_error
@@ -57,6 +59,11 @@ import pkiexpress.signature_starter
 import pkiexpress.signer
 import pkiexpress.standard_signature_policies
 import pkiexpress.timestamp_authority
+import pkiexpress.trust_service_auth_parameters
+import pkiexpress.trust_service_info
+import pkiexpress.trust_service_session_result
+import pkiexpress.trust_service_session_types
+import pkiexpress.trust_services_manager
 import pkiexpress.validation
 import pkiexpress.version
 import pkiexpress.version_manager
@@ -74,6 +81,8 @@ from pkiexpress.cades_signature_starter import CadesSignatureStarter
 from pkiexpress.cades_signer import CadesSigner
 from pkiexpress.certificate_reader import CertificateReader
 from pkiexpress.color import Color
+from pkiexpress.check_service_result import CheckServiceResult
+from pkiexpress.discover_services_result import DiscoverServicesResult
 from pkiexpress.digest_algorithm import DigestAlgorithms
 from pkiexpress.digest_algorithm import DigestAlgorithm
 from pkiexpress.digest_algorithm import MD5DigestAlgorithm
@@ -127,6 +136,10 @@ from pkiexpress.signature_policy_identifier import SignaturePolicyIdentifier
 from pkiexpress.signature_starter import SignatureStarter
 from pkiexpress.signer import Signer
 from pkiexpress.timestamp_authority import TimestampAuthority
+from pkiexpress.trust_service_auth_parameters import TrustServiceAuthParameters
+from pkiexpress.trust_service_info import TrustServiceInfo
+from pkiexpress.trust_service_session_result import TrustServiceSessionResult
+from pkiexpress.trust_services_manager import TrustServicesManager
 from pkiexpress.validation import ValidationItem
 from pkiexpress.validation import ValidationResults
 from pkiexpress.version import __version__
@@ -144,6 +157,8 @@ __all__ += pkiexpress.cades_signature_starter.__all__
 __all__ += pkiexpress.cades_signer.__all__
 __all__ += pkiexpress.certificate_reader.__all__
 __all__ += pkiexpress.color.__all__
+__all__ += pkiexpress.check_service_result.__all__
+__all__ += pkiexpress.discover_services_result.__all__
 __all__ += pkiexpress.digest_algorithm.__all__
 __all__ += pkiexpress.digest_algorithm_and_value.__all__
 __all__ += pkiexpress.installation_not_found_error.__all__
@@ -186,6 +201,11 @@ __all__ += pkiexpress.signature_starter.__all__
 __all__ += pkiexpress.signer.__all__
 __all__ += pkiexpress.standard_signature_policies.__all__
 __all__ += pkiexpress.timestamp_authority.__all__
+__all__ += pkiexpress.trust_service_auth_parameters.__all__
+__all__ += pkiexpress.trust_service_info.__all__
+__all__ += pkiexpress.trust_service_session_result.__all__
+__all__ += pkiexpress.trust_service_session_types.__all__
+__all__ += pkiexpress.trust_services_manager.__all__
 __all__ += pkiexpress.validation.__all__
 __all__ += pkiexpress.version.__all__
 __all__ += pkiexpress.version_manager.__all__
