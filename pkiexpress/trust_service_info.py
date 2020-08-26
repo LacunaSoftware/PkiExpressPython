@@ -7,7 +7,7 @@ class TrustServiceInfo():
         self.__service = None
         service = model.get('service', None)
         if service is not None:
-            self.__service = TrustServiceNameModel(service).name
+            self.__service = TrustServiceName(service)
 
     def get_service(self):
         return self.__service
@@ -32,7 +32,7 @@ class TrustServiceInfo():
     badge_url = property(get_badge_url, set_badge_url)
 
 
-class TrustServiceNameModel():
+class TrustServiceName():
 
     def __init__(self, model):
         self.__name = model.get('name', None)
@@ -47,5 +47,5 @@ class TrustServiceNameModel():
 
 __all__ = [
     'TrustServiceInfo',
-    'TrustServiceNameModel'
+    'TrustServiceName'
 ]

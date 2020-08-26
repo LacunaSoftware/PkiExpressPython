@@ -138,6 +138,7 @@ from pkiexpress.signer import Signer
 from pkiexpress.timestamp_authority import TimestampAuthority
 from pkiexpress.trust_service_auth_parameters import TrustServiceAuthParameters
 from pkiexpress.trust_service_info import TrustServiceInfo
+from pkiexpress.trust_service_info import TrustServiceName
 from pkiexpress.trust_service_session_result import TrustServiceSessionResult
 from pkiexpress.trust_services_manager import TrustServicesManager
 from pkiexpress.validation import ValidationItem

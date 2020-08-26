@@ -8,7 +8,7 @@ class CheckServiceResult():
     def set_user_has_certificates(self, user_has_certificates):
         self.__user_has_certificates = user_has_certificates
 
-    user_has_Certificates = property(get_user_has_certificates, set_user_has_certificates)
+    user_has_certificates = property(get_user_has_certificates, set_user_has_certificates)
 
 
 __all__ = [
