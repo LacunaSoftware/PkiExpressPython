@@ -35,6 +35,29 @@ class TrustServicesManager(PkiExpressOperator):
         return CheckServiceResult(model)
 
 
+    def check_by_cnpj(self, service, cnpj):
+        if not service:
+            raise Exception("The provided service is not valid")
+        if not cnpj:
+            raise Exception("The provided CNPJ is not valid")
+
+        args = []
+        args.append(service)
+        args.append('--cnpj')
+        args.append(cnpj)
+
+        # This operation can only be used on versions greater than 1.18 of
+        # the PKI Express.
+        self._version_manager.require_version('1.18')
+
+        # Invoke command.
+        response = self._invoke(self.COMMAND_CHECK_SERVICE, args)
+
+        # Parse output and return result.
+        model = self._parse_output(response[0])
+        return CheckServiceResult(model)
+
+
     def discover_by_cpf(self, cpf, throw_exceptions=False):
         if not cpf:
             raise Exception("The provided CPF is not valid")
@@ -92,7 +115,7 @@ class TrustServicesManager(PkiExpressOperator):
         throw_exceptions = False):
 
         if not cpf:
-            raise Exception("The provided CNPJ is not valid")
+            raise Exception("The provided CPF is not valid")
         if not redirect_url:
             raise Exception("The provided redirectUrl is not valid")
         if not session_type:
@@ -103,6 +126,55 @@ class TrustServicesManager(PkiExpressOperator):
         # Add CPF
         args.append('--cpf')
         args.append(cpf)
+
+        # Add redirect URL
+        args.append('--redirect-url')
+        args.append(redirect_url)
+
+        # Add session type
+        args.append('--session-type')
+        args.append(session_type)
+
+        if custom_state is not None:
+            args.append('--custom-state')
+            args.append(custom_state)
+
+        if throw_exceptions:
+            args.append('--throw')
+
+        # This operation can only be used on versions greater than 1.18 of
+        # the PKI Express.
+        self._version_manager.require_version('1.18')
+
+        # Invoke command.
+        response = self._invoke(self.COMMAND_DISCOVER_SERVICES, args)
+
+        # Parse output and return result.
+        model = self._parse_output(response[0])
+
+        return DiscoverServicesResult(model).auth_parameters
+
+
+    def discover_by_cnpj_and_start_auth(
+        self,
+        cnpj,
+        redirect_url,
+        session_type = trust_service_session_types.SIGNATURE_SESSION,
+        custom_state = None,
+        throw_exceptions = False):
+
+        if not cnpj:
+            raise Exception("The provided CNPJ is not valid")
+        if not redirect_url:
+            raise Exception("The provided redirectUrl is not valid")
+        if not session_type:
+            raise Exception("No session type was provided")
+
+        args = []
+
+        # Add CNPJ
+        args.append('--cnpj')
+        args.append(cnpj)
 
         # Add redirect URL
         args.append('--redirect-url')
