@@ -20,6 +20,8 @@ class Signer(BaseSigner):
         self._cert_thumb = None
         self._cert_password = None
         self._trust_service_session = None
+        self._key_name = None
+        self._cert_file_path = None
 
     # region set_pkcs12
 
@@ -81,6 +83,25 @@ class Signer(BaseSigner):
     def trust_service_session(self, value):
         self._trust_service_session = value
 
+    @property
+    def key_name(self):
+        return self._key_name
+
+    @key_name.setter
+    def key_name(self, value):
+        self._key_name = value
+
+    @property
+    def cert_file_path(self):
+        return self._cert_file_path
+
+    @cert_file_path.setter
+    def cert_file_path(self, pkcs12_path):
+        if not os.path.exists(pkcs12_path):
+            raise Exception('The provided certificate file was not found')
+        self._cert_file_path = pkcs12_path
+    # end region
+
     @abstractmethod
     def sign(self):
         raise Exception('This method should be implemented')
@@ -89,8 +110,8 @@ class Signer(BaseSigner):
         # Verify and add common options between signers and signature starters.
         super(Signer, self)._verify_and_add_common_options(args)
 
-        if not self._cert_thumb and not self._pkcs12_path and not self._trust_service_session:
-            raise Exception("No PKCS #12 file, certificate's thumbprint or "
+        if not self._cert_thumb and not self._pkcs12_path and not self._trust_service_session and not self._key_name:
+            raise Exception("Neither the certificate\'s thumbprint, the PKCS #12, the key name nor the "
                             "TrustServiceSession was provided")
 
         if self._cert_thumb:
@@ -114,6 +135,19 @@ class Signer(BaseSigner):
             # the PKI Express.
             self._version_manager.require_version('1.3')
 
+
+        if self._key_name:
+            if not self._cert_file_path:
+                raise Exception('The key name was passed, but no certificate file was provided.')
+
+            args.append('--key-name')
+            args.append(self._key_name)
+            args.append('--cert-file')
+            args.append(self._cert_file_path)
+
+            # This operation can only be used on versions greater than 1.14 of the
+            # PKI Express.
+            self._version_manager.require_version('1.14')
 
         # Add trust service session.
         if self._trust_service_session:
