@@ -15,6 +15,7 @@ import pkiexpress.cades_signature_starter
 import pkiexpress.cades_signer
 import pkiexpress.certificate_reader
 import pkiexpress.color
+import pkiexpress.commitment_type
 import pkiexpress.check_service_result
 import pkiexpress.discover_services_result
 import pkiexpress.digest_algorithm
@@ -80,6 +81,7 @@ from pkiexpress.cades_signature_explorer import CadesSignatureExplorer
 from pkiexpress.cades_signature_starter import CadesSignatureStarter
 from pkiexpress.cades_signer import CadesSigner
 from pkiexpress.certificate_reader import CertificateReader
+from pkiexpress.commitment_type import CommitmentType
 from pkiexpress.color import Color
 from pkiexpress.check_service_result import CheckServiceResult
 from pkiexpress.discover_services_result import DiscoverServicesResult
@@ -158,6 +160,7 @@ __all__ += pkiexpress.cades_signature_starter.__all__
 __all__ += pkiexpress.cades_signer.__all__
 __all__ += pkiexpress.certificate_reader.__all__
 __all__ += pkiexpress.color.__all__
+__all__ += pkiexpress.commitment_type.__all__
 __all__ += pkiexpress.check_service_result.__all__
 __all__ += pkiexpress.discover_services_result.__all__
 __all__ += pkiexpress.digest_algorithm.__all__
