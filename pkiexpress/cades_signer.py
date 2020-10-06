@@ -27,6 +27,7 @@ class CadesSigner(Signer):
         self.__file_to_sign_path = None
         self.__data_file_path = None
         self.__encapsulate_content = True
+        self.__commitment_type = None
 
     # region set_file_to_sign
 
@@ -111,6 +112,14 @@ class CadesSigner(Signer):
 
     # endregion
 
+    def set_commitment_type(self, value):
+        self.__commitment_type = value
+
+    def get_commitment_type(self):
+        return self.__commitment_type
+
+    commitment_type = property(get_commitment_type, set_commitment_type)
+
     def sign(self, get_cert=False):
         """
 
@@ -137,6 +146,11 @@ class CadesSigner(Signer):
 
         if not self.__encapsulate_content:
             args.append('--detached')
+
+        if self.__commitment_type:
+            args.append('--commitment-type')
+            args.append(self.__commitment_type)
+            self._version_manager.require_version('1.20')
 
         if get_cert:
             # This operation can only be used on version greater than 1.8 of the

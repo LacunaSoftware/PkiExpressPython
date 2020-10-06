@@ -25,6 +25,7 @@ class CadesSignatureStarter(SignatureStarter):
         self.__file_to_sign_path = None
         self.__data_file_path = None
         self.__encapsulate_content = True
+        self.__commitment_type = None
 
     # region set_file_to_sign
 
@@ -109,6 +110,14 @@ class CadesSignatureStarter(SignatureStarter):
 
     # endregion
 
+    def set_commitment_type(self, value):
+        self.__commitment_type = value
+
+    def get_commitment_type(self):
+        return self.__commitment_type
+
+    commitment_type = property(get_commitment_type, set_commitment_type)
+
     def start(self):
         """
 
@@ -141,6 +150,11 @@ class CadesSignatureStarter(SignatureStarter):
 
         if not self.__encapsulate_content:
             args.append('--detached')
+
+        if self.__commitment_type:
+            args.append('--commitment-type')
+            args.append(self.__commitment_type)
+            self._version_manager.require_version('1.20')
 
         # Invoke command with plain text output (to support PKI Express < 1.3)
         response = self._invoke_plain(self.COMMAND_START_CADES, args)
