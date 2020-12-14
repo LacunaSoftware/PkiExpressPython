@@ -21,6 +21,8 @@ import pkiexpress.discover_services_result
 import pkiexpress.digest_algorithm
 import pkiexpress.digest_algorithm_and_value
 import pkiexpress.installation_not_found_error
+import pkiexpress.key_generation_result
+import pkiexpress.key_generator
 import pkiexpress.name
 import pkiexpress.oids
 import pkiexpress.pades_horizontal_align
@@ -47,6 +49,9 @@ import pkiexpress.pdf_text_section
 import pkiexpress.pdf_text_style
 import pkiexpress.pk_algorithm
 import pkiexpress.pk_certificate
+import pkiexpress.pkcs12_certificate
+import pkiexpress.pkcs12_generation_result
+import pkiexpress.pkcs12_generator
 import pkiexpress.pki_brazil_certificate_fields
 import pkiexpress.pki_express_config
 import pkiexpress.pki_express_operator
@@ -94,6 +99,10 @@ from pkiexpress.digest_algorithm import SHA384DigestAlgorithm
 from pkiexpress.digest_algorithm import SHA512DigestAlgorithm
 from pkiexpress.digest_algorithm_and_value import DigestAlgorithmAndValue
 from pkiexpress.installation_not_found_error import InstallationNotFoundError
+from pkiexpress.key_generation_result import KeyGenerationResult
+from pkiexpress.key_generator import SupportedKeySizes
+from pkiexpress.key_generator import KeyFormats
+from pkiexpress.key_generator import KeyGenerator
 from pkiexpress.name import Name
 from pkiexpress.oids import Oids
 from pkiexpress.pades_certification_level import PadesCertificationLevel
@@ -127,6 +136,9 @@ from pkiexpress.pk_algorithm import SignatureAlgorithms
 from pkiexpress.pk_algorithm import SignatureAlgorithm
 from pkiexpress.pk_algorithm import RSASignatureAlgorithm
 from pkiexpress.pk_certificate import PKCertificate
+from pkiexpress.pkcs12_certificate import Pkcs12Certificate
+from pkiexpress.pkcs12_generation_result import Pkcs12GenerationResult
+from pkiexpress.pkcs12_generator import Pkcs12Generator
 from pkiexpress.pki_brazil_certificate_fields import PkiBrazilCertificateFields
 from pkiexpress.pki_express_config import PkiExpressConfig
 from pkiexpress.pki_express_operator import PkiExpressOperator
@@ -166,6 +178,8 @@ __all__ += pkiexpress.discover_services_result.__all__
 __all__ += pkiexpress.digest_algorithm.__all__
 __all__ += pkiexpress.digest_algorithm_and_value.__all__
 __all__ += pkiexpress.installation_not_found_error.__all__
+__all__ += pkiexpress.key_generation_result.__all__
+__all__ += pkiexpress.key_generator.__all__
 __all__ += pkiexpress.name.__all__
 __all__ += pkiexpress.oids.__all__
 __all__ += pkiexpress.pades_certification_level.__all__
@@ -193,6 +207,9 @@ __all__ += pkiexpress.pdf_text_style.__all__
 __all__ += pkiexpress.resource_content_or_reference.__all__
 __all__ += pkiexpress.pk_algorithm.__all__
 __all__ += pkiexpress.pk_certificate.__all__
+__all__ += pkiexpress.pkcs12_certificate.__all__
+__all__ += pkiexpress.pkcs12_generation_result.__all__
+__all__ += pkiexpress.pkcs12_generator.__all__
 __all__ += pkiexpress.pki_brazil_certificate_fields.__all__
 __all__ += pkiexpress.pki_express_config.__all__
 __all__ += pkiexpress.pki_express_operator.__all__
