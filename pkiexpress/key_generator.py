@@ -59,15 +59,15 @@ class KeyGenerator(PkiExpressOperator):
                     and self.__key_size != SupportedKeySizes.S2048 \
                     and self.__key_size != SupportedKeySizes.S4096:
                 raise Exception('Unsupported key size: {0}'.format(self.__key_size))
-            args += '--size'
-            args += self.__key_size
+            args.append('--size')
+            args.append(self.__key_size)
 
         if self.__key_format is not None:
-            args += '--format'
-            args += self.__key_format
+            args.append('--format')
+            args.append(self.__key_format)
 
         if self.__gen_csr:
-            args += '--gen-csr'
+            args.append('--gen-csr')
 
         # This operation can only be used on version greater than 1.11 of the
         # PKI Express.
@@ -79,4 +79,4 @@ class KeyGenerator(PkiExpressOperator):
         return KeyGenerationResult(output)
 
 
-__all__ = ['KeyGenerator']
+__all__ = ['SupportedKeySizes', 'KeyFormats', 'KeyGenerator']

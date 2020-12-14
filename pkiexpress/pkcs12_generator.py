@@ -60,16 +60,16 @@ class Pkcs12Generator(PkiExpressOperator):
         self.__password = value
 
     def generate(self, password=None):
-        if self.__key is not None:
+        if self.__key is None:
             raise Exception('The generated key was not set')
 
-        if self.__cert_file_path is not None:
+        if self.__cert_file_path is None:
             raise Exception('The certificate file was not set')
 
-        args = [ self.__key, self.__cert_file_path ]
+        args = [self.__key, self.__cert_file_path]
         if password is not None:
-            args += '--password'
-            args += password
+            args.append('--password')
+            args.append(password)
 
         # This operation can only be used on version greater than 1.11 of the
         # PKI Express.

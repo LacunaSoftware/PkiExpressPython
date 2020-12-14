@@ -100,6 +100,8 @@ from pkiexpress.digest_algorithm import SHA512DigestAlgorithm
 from pkiexpress.digest_algorithm_and_value import DigestAlgorithmAndValue
 from pkiexpress.installation_not_found_error import InstallationNotFoundError
 from pkiexpress.key_generation_result import KeyGenerationResult
+from pkiexpress.key_generator import SupportedKeySizes
+from pkiexpress.key_generator import KeyFormats
 from pkiexpress.key_generator import KeyGenerator
 from pkiexpress.name import Name
 from pkiexpress.oids import Oids
