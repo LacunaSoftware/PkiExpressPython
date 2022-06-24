@@ -144,7 +144,7 @@ class PkiExpressOperator(object):
                                 (split_output,
                                  os.linesep,
                                  self._version_manager.min_version))
-            raise Exception(split_output)
+            raise Exception('PKI Express returned non-success code %d: %s' % (code, split_output))
 
         return output.decode('ascii').split(os.linesep)
 
