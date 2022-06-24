@@ -135,16 +135,10 @@ class PkiExpressOperator(object):
                                             'installation')
 
         if code != 0:
-            split_output = output.decode('cp860').split(os.linesep)
-            if code == 1 and \
-                    self._version_manager.min_version > StrictVersion('1.0'):
-                raise Exception('%s %s >>>>> TIP: This operation require '
-                                'PKI Express %s, please check your PKI Express '
-                                'version.' %
-                                (split_output,
-                                 os.linesep,
-                                 self._version_manager.min_version))
-            raise Exception('PKI Express returned non-success code %d: %s' % (code, split_output))
+            output = output.decode('cp860')
+            tip = '\n>>>>> TIP: This operation requires PKI Express %s, please check your PKI Express version.' % self._version_manager.min_version \
+                if code == 1 and self._version_manager.min_version > StrictVersion('1.0') else ''
+            raise Exception('PKI Express returned non-success code %d: %s%s' % (code, output, tip))
 
         return output.decode('ascii').split(os.linesep)
 

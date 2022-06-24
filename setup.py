@@ -6,9 +6,9 @@ readme.close()
 
 setup(
     name='pkiexpress',
-    version='1.10.1',
-    author='Ismael Medeiros',
-    author_email="IsmaelM@lacunasoftware.com",
+    version='1.10.2',
+    author='Leonardo Pignataro',
+    author_email="leonardop@lacunasoftware.com",
     description='Classes to consume PKI Express',
     long_description=long_description,
     keywords='python pki express certificate digital signature x509',
