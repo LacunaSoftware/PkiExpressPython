@@ -25,7 +25,7 @@ from pkiexpress import DigestAlgorithms
         * CAdES Document Merge 
 
 """
-class TestClass():
+class PkiExpressSmokeTests():
     REST_PKI_ACCESS_TOKEN = None
     config = PkiExpressConfig(
             pki_express_home = None,
@@ -263,5 +263,5 @@ class TestClass():
         return file_path
 
 
-test_class = TestClass()
+test_class = PkiExpressSmokeTests()
 test_class.run_tests()
