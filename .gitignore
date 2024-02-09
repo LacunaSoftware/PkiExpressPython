@@ -104,3 +104,6 @@ venv.bak/
 .mypy_cache/
 
 .idea/
+
+# test folder output files, generated each test
+tests/cades_pdfs_extracted/*
