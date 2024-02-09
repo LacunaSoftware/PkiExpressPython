@@ -106,4 +106,4 @@ venv.bak/
 .idea/
 
 # test folder output files, generated each test
-tests/cades_pdfs_extracted/*
+pkie_tests/cades_pdfs_extracted/*
