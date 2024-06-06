@@ -337,7 +337,7 @@ class PkiExpressOperator(object):
         return self._culture_id
 
     @culture_id.setter
-    def culture(self, value):
+    def culture_id(self, value):
         self.__set_culture_id(value)
 
     def __set_culture_id(self, value):
