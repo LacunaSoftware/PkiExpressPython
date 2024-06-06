@@ -120,7 +120,7 @@ class PkiExpressOperator(object):
 
         # Add culture id if set
         if self._culture_id:
-            cmd_args.append('-ci')
+            cmd_args.append('--culture-id')
             cmd_args.append(str(self._culture_id))
             # This option can only be used on versions greater than 1.10.0 of
             # the PKI Express
