@@ -54,6 +54,7 @@ class PkiExpressOperator(object):
         self._timestamp_authority = None
         self._crl_download_timeout = None
         self._ca_issuers_download_timeout = None
+        self._culture_id = None
 
     def __del__(self):
         for temp_file in self.__temp_files:
@@ -116,6 +117,14 @@ class PkiExpressOperator(object):
             # This option can only be used on versions greater than 1.12.2 of
             # the PKI Express
             self._version_manager.require_version('1.12.2')
+
+        # Add culture id if set
+        if self._culture_id:
+            cmd_args.append('-ci')
+            cmd_args.append(str(self._culture_id))
+            # This option can only be used on versions greater than 1.10.0 of
+            # the PKI Express
+            self._version_manager.require_version('1.10.0')
 
         # Add base64 output option
         if not plain_output:
@@ -318,5 +327,25 @@ class PkiExpressOperator(object):
 
     # endregion
 
+    # region "culture" accessors
+
+    @property
+    def culture_id(self):
+        return self.__get_culture_id()
+
+    def __get_culture_id(self):
+        return self._culture_id
+
+    @culture_id.setter
+    def culture(self, value):
+        self.__set_culture_id(value)
+
+    def __set_culture_id(self, value):
+        if value is None:
+            raise Exception('The provided "culture" is not '
+                            'valid')
+        self._culture_id = value
+
+    # endregion
 
 __all__ = ['PkiExpressOperator']
